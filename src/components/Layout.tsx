@@ -125,32 +125,6 @@ export default function Layout() {
           })}
         </nav>
 
-        <div style={{ padding: "0 14px 10px 14px" }}>
-          <button
-            onClick={() => setModalInstalarAberto(true)}
-            style={{
-              width: "100%",
-              backgroundColor: "rgba(244, 180, 0, 0.12)",
-              border: "1px solid #f4b400",
-              color: "#f4b400",
-              borderRadius: "8px",
-              padding: "10px 12px",
-              fontSize: "0.86rem",
-              fontWeight: "700",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "8px",
-              cursor: "pointer",
-              transition: "all 0.2s ease",
-            }}
-            title="Instalar Aplicativo Oficial no seu celular ou PC"
-          >
-            <Download size={16} />
-            <span>Instalar Aplicativo</span>
-          </button>
-        </div>
-
         <div className="sidebar-footer">
           {usuario && (
             <div className="sidebar-usuario-area">

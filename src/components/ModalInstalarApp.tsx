@@ -28,6 +28,11 @@ export default function ModalInstalarApp({ aberto, onFechar }: ModalInstalarAppP
       setInstalado(true);
     }
 
+    // Verifica se o prompt já foi capturado globalmente
+    if (typeof window !== "undefined" && window.__pwaPrompt) {
+      setDeferredPrompt(window.__pwaPrompt);
+    }
+
     // Captura o evento nativo de instalação do Chrome / Edge / Android / Windows
     const handleBeforeInstall = (e: Event) => {
       e.preventDefault();
@@ -37,6 +42,7 @@ export default function ModalInstalarApp({ aberto, onFechar }: ModalInstalarAppP
     const handleAppInstalled = () => {
       setInstalado(true);
       setDeferredPrompt(null);
+      if (typeof window !== "undefined") window.__pwaPrompt = null;
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstall);
@@ -51,16 +57,21 @@ export default function ModalInstalarApp({ aberto, onFechar }: ModalInstalarAppP
   if (!aberto) return null;
 
   const handleInstalar = async () => {
-    if (deferredPrompt) {
-      await deferredPrompt.prompt();
-      const choice = await deferredPrompt.userChoice;
-      if (choice.outcome === "accepted") {
-        setInstalado(true);
-        setDeferredPrompt(null);
+    const prompt = deferredPrompt || (typeof window !== "undefined" ? window.__pwaPrompt : null);
+    if (prompt && typeof prompt.prompt === "function") {
+      try {
+        await prompt.prompt();
+        const choice = await prompt.userChoice;
+        if (choice && choice.outcome === "accepted") {
+          setInstalado(true);
+          setDeferredPrompt(null);
+          if (typeof window !== "undefined") window.__pwaPrompt = null;
+        }
+      } catch (err) {
+        console.error(err);
       }
     } else {
-      // Se não tiver o prompt direto (ex: Chrome no desktop sem prompt disparado)
-      alert("Para instalar neste navegador, clique no ícone de computador/instalar na barra de endereços (ao lado da estrela de favoritos) ou adicione aos favoritos.");
+      setInstalado(true);
     }
   };
 
@@ -117,8 +128,8 @@ export default function ModalInstalarApp({ aberto, onFechar }: ModalInstalarAppP
         <div style={{ textAlign: "center", marginBottom: "20px" }}>
           <div
             style={{
-              width: "88px",
-              height: "88px",
+              width: "92px",
+              height: "92px",
               backgroundColor: "#0f2a43",
               borderRadius: "22px",
               margin: "0 auto 14px",
@@ -126,13 +137,14 @@ export default function ModalInstalarApp({ aberto, onFechar }: ModalInstalarAppP
               alignItems: "center",
               justifyContent: "center",
               boxShadow: "0 8px 16px rgba(15, 42, 67, 0.25)",
-              padding: "10px",
+              padding: "12px",
+              border: "2px solid #f4b400",
             }}
           >
             <img
-              src="/logo-teologia.png"
+              src="/logo-teologia-branca.png"
               alt="Logo Teologia Acessível"
-              style={{ width: "100%", height: "100%", objectFit: "contain", filter: "brightness(0) invert(1)" }}
+              style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           </div>
 

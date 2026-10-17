@@ -23,6 +23,23 @@ import ModalInstalarApp from "../components/ModalInstalarApp";
 export default function Apresentacao() {
   const [modalInstalarAberto, setModalInstalarAberto] = useState(false);
 
+  const handleClicarInstalar = async () => {
+    const prompt = typeof window !== "undefined" ? window.__pwaPrompt : null;
+    if (prompt && typeof prompt.prompt === "function") {
+      try {
+        await prompt.prompt();
+        const choice = await prompt.userChoice;
+        if (choice && choice.outcome === "accepted") {
+          window.__pwaPrompt = null;
+          return;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    setModalInstalarAberto(true);
+  };
+
   return (
     <div className="apresentacao-pagina" style={{ backgroundColor: "#ffffff", minHeight: "100vh", color: "#1e293b", fontFamily: "system-ui, -apple-system, sans-serif" }}>
       
@@ -42,7 +59,7 @@ export default function Apresentacao() {
           </Link>
           <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }}>
             <button
-              onClick={() => setModalInstalarAberto(true)}
+              onClick={handleClicarInstalar}
               style={{
                 backgroundColor: "rgba(244, 180, 0, 0.12)",
                 border: "1.5px solid #f4b400",
@@ -97,7 +114,7 @@ export default function Apresentacao() {
             Quero me Matricular Hoje
           </Link>
           <button
-            onClick={() => setModalInstalarAberto(true)}
+            onClick={handleClicarInstalar}
             style={{
               backgroundColor: "rgba(244, 180, 0, 0.12)",
               border: "2px solid #f4b400",
@@ -375,7 +392,7 @@ export default function Apresentacao() {
             Garantir Minha Vaga
           </Link>
           <button
-            onClick={() => setModalInstalarAberto(true)}
+            onClick={handleClicarInstalar}
             style={{
               backgroundColor: "rgba(244, 180, 0, 0.15)",
               border: "2px solid #f4b400",

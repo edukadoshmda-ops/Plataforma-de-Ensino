@@ -16,6 +16,13 @@
       content="Teologia Acessível. Plataforma de estudos teológicos livres, compêndios em PDF, audiobooks e provas acadêmicas."
     />
     <title>Teologia Acessível – Plataforma de Teologia Bíblica</title>
+    <script>
+      window.__pwaPrompt = null;
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        window.__pwaPrompt = e;
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
