@@ -1,7 +1,7 @@
 // public/sw.js
 // Service Worker do PWA Teologia Acessível
 
-const CACHE_NAME = "teologia-acessivel-v2";
+const CACHE_NAME = "teologia-acessivel-v5";
 const ASSETS_TO_CACHE = [
   "/",
   "/index.html",

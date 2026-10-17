@@ -1001,6 +1001,23 @@ html {
   margin: 8px 0 0;
 }
 
+.plano-vitalicio-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-top: 10px;
+}
+
 .plano-vantagens-lista {
   list-style: none;
   padding: 0;
@@ -7834,6 +7851,152 @@ input:focus {
   color: #2563eb;
   border-color: #93c5fd;
   transform: scale(1.06);
+}
+
+/* =========================================================
+   HEADER RESPONSIVO E ELEGANTE DA PÁGINA DE APRESENTAÇÃO
+   ========================================================= */
+.apresentacao-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  background-color: #0f2a43;
+  width: 100%;
+}
+
+.apresentacao-header-container {
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1160px;
+  margin: 0 auto;
+  gap: 16px;
+}
+
+.apresentacao-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.apresentacao-logo-img {
+  height: 48px;
+  max-width: 180px;
+  object-fit: contain;
+  opacity: 1;
+  filter: brightness(0) invert(1);
+}
+
+.apresentacao-logo-textos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.15;
+}
+
+.apresentacao-logo-titulo {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  text-align: center;
+  display: block;
+}
+
+.apresentacao-logo-sub {
+  color: #cbd5e1;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-align: center;
+  display: block;
+}
+
+.apresentacao-header-acoes {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.apresentacao-btn-instalar {
+  background-color: rgba(244, 180, 0, 0.14);
+  border: 1px solid #f4b400;
+  color: #f4b400;
+  padding: 7px 13px;
+  border-radius: 7px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.apresentacao-btn-instalar:hover {
+  background-color: #f4b400;
+  color: #0f2a43;
+}
+
+.apresentacao-btn-entrar {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  padding: 7px 14px !important;
+  border-radius: 7px !important;
+  font-size: 0.84rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+}
+
+.apresentacao-btn-comece {
+  background-color: #f4b400 !important;
+  color: #0f2a43 !important;
+  padding: 7px 14px !important;
+  border-radius: 7px !important;
+  font-size: 0.84rem !important;
+  font-weight: 800 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25) !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 768px) {
+  .apresentacao-header-container {
+    padding: 12px 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  .apresentacao-logo-link {
+    justify-content: center;
+  }
+  .apresentacao-logo-titulo {
+    font-size: 1.1rem;
+  }
+  .apresentacao-header-acoes {
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+  }
+  .apresentacao-btn-instalar,
+  .apresentacao-btn-entrar,
+  .apresentacao-btn-comece {
+    padding: 6px 10px !important;
+    font-size: 0.78rem !important;
+  }
 }
 
 

@@ -80,15 +80,15 @@ export default function Matricula() {
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
                 <strong style={{ fontSize: "0.98rem", color: "#0f2a43" }}>Plano Digital Completo</strong>
-                <span className="badge-status status-concluído">100% Online</span>
+                <span className="badge-status status-concluído">♾️ Acesso Vitalício</span>
               </div>
               <div style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: 6 }}>
-                30 Disciplinas + Certificado & Credencial Digital imediata
+                Acesso Vitalício às 30 Disciplinas + Certificado & Credencial Digital imediata
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
                 <span style={{ fontSize: "0.82rem", textDecoration: "line-through", color: "#94a3b8" }}>De R$ 497</span>
                 <strong style={{ fontSize: "1.25rem", color: "#0f2a43" }}>12x R$ 14,99</strong>
-                <small style={{ color: "#64748b", fontSize: "0.82rem" }}>(ou R$ 179,88)</small>
+                <small style={{ color: "#64748b", fontSize: "0.82rem" }}>(ou R$ 179,88 à vista)</small>
               </div>
             </div>
 
@@ -103,16 +103,16 @@ export default function Matricula() {
                   <Crown size={15} color="#d97706" /> Formação + Kit Físico
                 </strong>
                 <span className="badge-status" style={{ background: "#fef3c7", color: "#92400e", fontWeight: 700 }}>
-                  Mais Escolhido
+                  👑 Vitalício + Físico
                 </span>
               </div>
               <div style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: 6 }}>
-                Digital + Credencial PVC + Diploma Papel Especial (Frete Grátis)
+                Acesso Vitalício + Credencial PVC + Diploma Papel Especial (Frete Grátis)
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
                 <span style={{ fontSize: "0.82rem", textDecoration: "line-through", color: "#94a3b8" }}>De R$ 890</span>
                 <strong style={{ fontSize: "1.25rem", color: "#0f2a43" }}>12x R$ 29,70</strong>
-                <small style={{ color: "#64748b", fontSize: "0.82rem" }}>(ou R$ 297,00)</small>
+                <small style={{ color: "#64748b", fontSize: "0.82rem" }}>(ou R$ 297,00 à vista)</small>
               </div>
             </div>
           </div>

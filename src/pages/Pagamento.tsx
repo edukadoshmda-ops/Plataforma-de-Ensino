@@ -18,6 +18,7 @@ import {
   MapPin,
   QrCode,
   Tag,
+  Infinity,
 } from "lucide-react";
 import { obterMatricula } from "../services/supabaseClient";
 
@@ -40,8 +41,8 @@ const PLANOS: Record<TipoPlano, PlanoConfig> = {
   digital: {
     id: "digital",
     nome: "Plano Digital Completo",
-    subtitulo: "Acesso total online + Certificado, Histórico e Credencial Digital em PDF de Alta Resolução",
-    badge: "100% Online",
+    subtitulo: "Acesso VITALÍCIO total online + Certificado, Histórico e Credencial Digital em PDF de Alta Resolução",
+    badge: "♾️ Acesso Vitalício",
     valorOriginal: 497.0,
     valorTotal: 179.88,
     valorParcela: 14.99,
@@ -49,7 +50,7 @@ const PLANOS: Record<TipoPlano, PlanoConfig> = {
     checkoutUrl:
       import.meta.env.VITE_ASAAS_CHECKOUT_URL || "https://www.asaas.com/c/g59srloma9xotu29",
     itens: [
-      "Acesso completo às 30 Disciplinas Teológicas",
+      "Acesso VITALÍCIO irrestrito às 30 Disciplinas Teológicas (sem mensalidades)",
       "Biblioteca Digital com +100 Obras Raras em PDF",
       "Audiobooks com voz profissional e Preleções em Estúdio",
       "Tutor IA Teológico 24h para exegese e dúvidas bíblicas",
@@ -62,8 +63,8 @@ const PLANOS: Record<TipoPlano, PlanoConfig> = {
   fisico: {
     id: "fisico",
     nome: "Plano Físico Ministerial (Kit de Formatura)",
-    subtitulo: "Tudo do Digital + Credencial em PVC Rígido e Diploma em Papel Especial com Selo Dourado",
-    badge: "👑 Mais Escolhido",
+    subtitulo: "Acesso VITALÍCIO + Credencial em PVC Rígido e Diploma em Papel Especial com Selo Dourado",
+    badge: "👑 Vitalício + Kit Físico",
     valorOriginal: 890.0,
     valorTotal: 297.0,
     valorParcela: 29.7,
@@ -73,6 +74,7 @@ const PLANOS: Record<TipoPlano, PlanoConfig> = {
       import.meta.env.VITE_ASAAS_CHECKOUT_URL ||
       "https://www.asaas.com/c/g59srloma9xotu29",
     itens: [
+      "Acesso VITALÍCIO irrestrito a toda a plataforma online",
       "TUDO o que está incluso no Plano Digital Completo",
       "Credencial Oficial em Cartão PVC Rígido com foto e QR Code",
       "Diploma de Bacharel Livre em Papel Alta Gramatura com Selo Metalizado em Relevo Dourado",
@@ -269,10 +271,10 @@ export default function Pagamento() {
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
               <strong style={{ fontSize: "1.05rem", color: "#0f2a43" }}>Plano Digital Completo</strong>
-              <span className="badge-status status-concluído">100% Online</span>
+              <span className="badge-status status-concluído">♾️ Acesso Vitalício</span>
             </div>
             <p style={{ margin: "0 0 8px", fontSize: "0.85rem", color: "#64748b", lineHeight: 1.4 }}>
-              30 disciplinas + Biblioteca Digital + Diploma e Credencial Digital em PDF de Alta Resolução.
+              Acesso vitalício às 30 disciplinas + Biblioteca Digital + Diploma e Credencial Digital em PDF de Alta Resolução.
             </p>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
               <span style={{ fontSize: "0.88rem", textDecoration: "line-through", color: "#94a3b8" }}>De R$ 497,00</span>
@@ -294,11 +296,11 @@ export default function Pagamento() {
                 <Crown size={16} color="#d97706" /> Formação + Kit Físico Ministerial
               </strong>
               <span className="badge-status" style={{ background: "#fef3c7", color: "#92400e", fontWeight: 700 }}>
-                👑 Mais Escolhido
+                👑 Vitalício + Físico
               </span>
             </div>
             <p style={{ margin: "0 0 8px", fontSize: "0.85rem", color: "#64748b", lineHeight: 1.4 }}>
-              Digital + Credencial PVC Rígido + Diploma Papel Alta Gramatura com Selo Dourado (Frete Grátis).
+              Acesso vitalício digital + Credencial PVC Rígido + Diploma Papel Alta Gramatura com Selo Dourado (Frete Grátis).
             </p>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
               <span style={{ fontSize: "0.88rem", textDecoration: "line-through", color: "#94a3b8" }}>De R$ 890,00</span>
@@ -355,7 +357,7 @@ export default function Pagamento() {
               >
                 <Tag size={14} />
                 <span>
-                  Você economiza R$ {economia.toFixed(2).replace(".", ",")} nesta condição de lançamento!
+                  Você economiza R$ {economia.toFixed(2).replace(".", ",")} • Pagamento Único com Acesso Vitalício!
                 </span>
               </div>
             </div>

@@ -17,6 +17,7 @@ import {
   CheckCircle2,
   Lock,
   Download,
+  Infinity,
 } from "lucide-react";
 import ModalInstalarApp from "../components/ModalInstalarApp";
 
@@ -44,46 +45,33 @@ export default function Apresentacao() {
     <div className="apresentacao-pagina" style={{ backgroundColor: "#ffffff", minHeight: "100vh", color: "#1e293b", fontFamily: "system-ui, -apple-system, sans-serif" }}>
       
       {/* Header Público */}
-      <header style={{ borderBottom: "1px solid rgba(255,255,255,0.18)", backgroundColor: "#0f2a43" }}>
-        <div style={{ padding: "20px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", maxWidth: "1100px", margin: "0 auto" }}>
-          <Link to="/" style={{ display: "flex", alignItems: "center", gap: "14px", textDecoration: "none" }}>
-            <img src="/logo-teologia.png" alt="Teologia Acessível" style={{ height: "64px", maxWidth: "260px", objectFit: "contain", opacity: 1, filter: "brightness(0) invert(1)" }} />
-            <div style={{ display: "flex", flexDirection: "column", textAlign: "center", alignItems: "center" }}>
-              <span style={{ color: "#ffffff", fontSize: "1.5rem", fontWeight: "800", letterSpacing: "-0.01em", lineHeight: 1.2, textAlign: "center" }}>
+      <header className="apresentacao-header">
+        <div className="apresentacao-header-container">
+          <Link to="/" className="apresentacao-logo-link">
+            <img src="/logo-teologia.png" alt="Teologia Acessível" className="apresentacao-logo-img" />
+            <div className="apresentacao-logo-textos" style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+              <span className="apresentacao-logo-titulo" style={{ textAlign: "center", width: "100%" }}>
                 Teologia Acessível
               </span>
-              <span style={{ color: "#cbd5e1", fontSize: "0.85rem", fontWeight: "500", letterSpacing: "0.01em", textAlign: "center" }}>
+              <span className="apresentacao-logo-sub" style={{ textAlign: "center", width: "100%" }}>
                 Plataforma de Teologia Bíblica
               </span>
             </div>
           </Link>
-          <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }}>
+          <div className="apresentacao-header-acoes">
             <button
               onClick={handleClicarInstalar}
-              style={{
-                backgroundColor: "rgba(244, 180, 0, 0.12)",
-                border: "1.5px solid #f4b400",
-                color: "#f4b400",
-                padding: "8px 16px",
-                borderRadius: "8px",
-                fontWeight: "700",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                cursor: "pointer",
-                fontSize: "0.88rem",
-                transition: "all 0.2s ease",
-              }}
+              className="apresentacao-btn-instalar"
               title="Instalar Aplicativo Oficial no seu celular ou PC"
             >
-              <Download size={16} />
-              <span>Instalar Aplicativo</span>
+              <Download size={15} />
+              <span>Instalar App</span>
             </button>
-            <Link to="/login" className="btn btn-contorno" style={{ color: "#ffffff", borderColor: "rgba(255,255,255,0.3)", padding: "8px 16px", borderRadius: "6px", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", fontWeight: "500" }}>
-              <LogIn size={16} /> Entrar
+            <Link to="/login" className="btn btn-contorno apresentacao-btn-entrar">
+              <LogIn size={15} /> <span>Entrar</span>
             </Link>
-            <Link to="/cadastro" className="btn btn-primario" style={{ backgroundColor: "#f4b400", color: "#0f2a43", padding: "8px 16px", borderRadius: "6px", textDecoration: "none", fontWeight: "bold", display: "flex", alignItems: "center", gap: "8px", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
-              <Sparkles size={16} /> Comece Agora
+            <Link to="/cadastro" className="btn btn-primario apresentacao-btn-comece">
+              <Sparkles size={15} /> <span>Comece Agora</span>
             </Link>
           </div>
         </div>
@@ -91,6 +79,11 @@ export default function Apresentacao() {
 
       {/* Hero Section */}
       <section style={{ padding: "90px 20px 80px", textAlign: "center", maxWidth: "960px", margin: "0 auto" }}>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(16, 185, 129, 0.1)", border: "1px solid rgba(16, 185, 129, 0.35)", color: "#065f46", padding: "6px 18px", borderRadius: "999px", fontSize: "0.88rem", fontWeight: "800", marginBottom: "22px", letterSpacing: "0.02em" }}>
+          <Infinity size={17} style={{ color: "#059669" }} />
+          <span>ACESSO VITALÍCIO • PAGAMENTO ÚNICO • SEM MENSALIDADES</span>
+        </div>
+
         <h1
           style={{
             fontSize: "clamp(2.2rem, 4.2vw, 3.25rem)",
@@ -107,7 +100,7 @@ export default function Apresentacao() {
           <span style={{ whiteSpace: "nowrap" }}>on-line</span>
         </h1>
         <p style={{ fontSize: "1.25rem", color: "#475569", marginBottom: "40px", lineHeight: "1.6" }}>
-          Estude e aprenda Teologia no conforto da sua casa, no horário que preferir e no seu próprio ritmo. Escolha a disciplina que deseja estudar, organize sua rotina e avance de acordo com os seus objetivos, sem abrir mão da profundidade bíblica e da qualidade do ensino. Tenha acesso a apostilas em PDF, audiobooks, preleções em estúdio e um Tutor IA exclusivo para acompanhar sua jornada. Aprenda onde estiver, pelo computador ou celular, com liberdade para revisar os conteúdos e construir uma formação sólida para a vida cristã e o ministério.
+          Estude e aprenda Teologia no conforto da sua casa, no horário que preferir e no seu próprio ritmo com <strong>Acesso Vitalício</strong>. Escolha a disciplina que deseja estudar, organize sua rotina e avance de acordo com os seus objetivos, sem abrir mão da profundidade bíblica e da qualidade do ensino. Tenha acesso a apostilas em PDF, audiobooks, preleções em estúdio e um Tutor IA exclusivo para acompanhar sua jornada. Aprenda onde estiver, pelo computador ou celular, com liberdade total para revisar os conteúdos para sempre: pague uma única vez e tenha acesso perpétuo, sem mensalidades.
         </p>
         <div style={{ display: "flex", gap: "16px", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
           <Link to="/cadastro" style={{ backgroundColor: "#0f2a43", color: "#ffffff", padding: "18px 36px", fontSize: "1.2rem", borderRadius: "8px", textDecoration: "none", fontWeight: "bold", display: "inline-flex", alignItems: "center", gap: "10px", boxShadow: "0 4px 15px rgba(15, 42, 67, 0.2)" }}>
@@ -142,12 +135,12 @@ export default function Apresentacao() {
       <section className="apresentacao-oferta" aria-labelledby="oferta-titulo">
         <div className="apresentacao-oferta-header">
           <span className="apresentacao-oferta-selo">
-            <Zap size={16} /> CONDIÇÃO ESPECIAL DE LANÇAMENTO
+            <Zap size={16} /> CONDIÇÃO ESPECIAL DE LANÇAMENTO • ACESSO VITALÍCIO
           </span>
-          <h2 id="oferta-titulo">Planos de Formação com Reconhecimento Ministerial</h2>
+          <h2 id="oferta-titulo">Planos de Formação com Reconhecimento Ministerial e Acesso Vitalício</h2>
           <p>
-            Dois formatos completos para atender sua vocação: estude com flexibilidade 100% on-line
-            ou viva a solenidade definitiva com o Kit Físico Oficial entregue na sua residência.
+            Dois formatos completos para atender sua vocação com <strong>Acesso Vitalício garantido</strong>: estude com flexibilidade 100% on-line
+            ou viva a solenidade definitiva com o Kit Físico Oficial entregue na sua residência. Pagamento único, sem mensalidades.
           </p>
         </div>
 
@@ -155,10 +148,13 @@ export default function Apresentacao() {
           {/* PLANO 1: DIGITAL COMPLETO */}
           <div className="plano-card">
             <div className="plano-header">
-              <span className="plano-selo-tipo">Acesso Imediato 100% Digital</span>
+              <span className="plano-selo-tipo">
+                <Infinity size={14} style={{ display: "inline-block", verticalAlign: "middle", marginRight: 4 }} />
+                Acesso Vitalício 100% Digital
+              </span>
               <h3 className="plano-titulo">Formação Digital Completa</h3>
               <p className="plano-subtitulo">
-                Ideal para quem deseja estudar com liberdade no celular ou computador e emitir os documentos em PDF de alta resolução.
+                Ideal para quem deseja estudar com liberdade no celular ou computador com acesso vitalício e emitir os documentos em PDF de alta resolução.
               </p>
             </div>
 
@@ -169,9 +165,16 @@ export default function Apresentacao() {
                 <strong>R$ 14,99</strong>
               </div>
               <p className="plano-a-vista">ou R$ 179,88 à vista via PIX / Boleto</p>
+              <div className="plano-vitalicio-badge">
+                <Infinity size={14} /> Pagamento Único • Acesso Vitalício
+              </div>
             </div>
 
             <ul className="plano-vantagens-lista">
+              <li className="plano-vantagem-item" style={{ background: "#ecfdf5", padding: "8px 12px", borderRadius: 8, border: "1px solid #a7f3d0" }}>
+                <Infinity size={18} className="plano-vantagem-destaque-icone" style={{ color: "#059669" }} />
+                <span><strong>Acesso Vitalício Ilimitado</strong>: estude para sempre, sem mensalidades e sem prazo para expirar</span>
+              </li>
               <li className="plano-vantagem-item">
                 <Check size={18} className="plano-vantagem-icone" />
                 <span>Acesso irrestrito a todas as <strong>30 disciplinas</strong> teológicas</span>
@@ -224,12 +227,12 @@ export default function Apresentacao() {
 
             <div className="plano-header">
               <span className="plano-selo-tipo">
-                <Package size={14} style={{ display: "inline-block", verticalAlign: "middle", marginRight: 4 }} />
-                Digital + Kit Físico de Formatura
+                <Infinity size={14} style={{ display: "inline-block", verticalAlign: "middle", marginRight: 4 }} />
+                Acesso Vitalício + Kit Físico de Formatura
               </span>
               <h3 className="plano-titulo">Formação Completa + Kit Físico Ministerial</h3>
               <p className="plano-subtitulo">
-                A experiência solene definitiva: credencial em cartão PVC rígido e diploma em alta gramatura com selo dourado na sua casa.
+                A experiência solene definitiva com acesso vitalício: credencial em cartão PVC rígido e diploma em alta gramatura com selo dourado na sua casa.
               </p>
             </div>
 
@@ -240,12 +243,15 @@ export default function Apresentacao() {
                 <strong>R$ 29,70</strong>
               </div>
               <p className="plano-a-vista">ou R$ 297,00 à vista via PIX / Cartão</p>
+              <div className="plano-vitalicio-badge">
+                <Infinity size={14} /> Pagamento Único • Acesso Vitalício
+              </div>
             </div>
 
             <ul className="plano-vantagens-lista">
-              <li className="plano-vantagem-item" style={{ background: "#fef3c7", padding: "8px 12px", borderRadius: 8 }}>
-                <Sparkles size={18} className="plano-vantagem-destaque-icone" />
-                <span><strong>TUDO o que está incluso no Plano Digital</strong></span>
+              <li className="plano-vantagem-item" style={{ background: "#fef3c7", padding: "8px 12px", borderRadius: 8, border: "1px solid #fde68a" }}>
+                <Infinity size={18} className="plano-vantagem-destaque-icone" style={{ color: "#b45309" }} />
+                <span><strong>Acesso Vitalício Ilimitado</strong> + TUDO o que está incluso no Plano Digital</span>
               </li>
               <li className="plano-vantagem-item">
                 <Check size={18} className="plano-vantagem-icone" />
@@ -282,6 +288,13 @@ export default function Apresentacao() {
 
         {/* Faixa de Garantia e Confiança */}
         <div className="plano-garantia-faixa">
+          <div className="plano-garantia-card">
+            <Infinity size={32} color="#f4b400" style={{ flexShrink: 0 }} />
+            <div>
+              <h4>Acesso Vitalício Garantido</h4>
+              <p>Pague uma única vez. Seu acesso à plataforma, apostilas e atualizações nunca expira, sem mensalidades.</p>
+            </div>
+          </div>
           <div className="plano-garantia-card">
             <ShieldCheck size={32} color="#f4b400" style={{ flexShrink: 0 }} />
             <div>
@@ -389,7 +402,7 @@ export default function Apresentacao() {
         </p>
         <div style={{ display: "flex", gap: "16px", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
           <Link to="/cadastro" style={{ backgroundColor: "#ffffff", color: "#0f2a43", padding: "18px 40px", fontSize: "1.2rem", borderRadius: "8px", textDecoration: "none", fontWeight: "bold", display: "inline-block", boxShadow: "0 4px 15px rgba(0,0,0,0.2)" }}>
-            Garantir Minha Vaga
+            Garantir Minha Vaga • Acesso Vitalício
           </Link>
           <button
             onClick={handleClicarInstalar}
@@ -414,6 +427,10 @@ export default function Apresentacao() {
             <span>Instalar Aplicativo</span>
           </button>
         </div>
+        <p style={{ marginTop: "20px", fontSize: "0.95rem", color: "#94a3b8", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+          <Infinity size={18} color="#38bdf8" />
+          <span>Matrícula única com <strong>Acesso Vitalício Imediato</strong> e sem cobranças adicionais futuras.</span>
+        </p>
       </section>
 
       {/* Footer */}
