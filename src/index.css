@@ -206,24 +206,7 @@ html {
   letter-spacing: 0.02em;
 }
 
-.btn-fechar-menu {
-  display: none;
-  background: #ffffff;
-  border: 1px solid #d7b34a;
-  color: #111827;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-}
 
-.btn-fechar-menu:hover { background: #fff8df; color: #8a6500; }
 
 .sidebar-nav {
   display: flex;
@@ -1340,7 +1323,6 @@ input:focus {
     box-shadow: 8px 0 28px rgba(0,0,0,0.28);
   }
   .sidebar-aberta { transform: translateX(0); }
-  .btn-fechar-menu { display: inline-flex; }
   .mobile-topbar { display: flex; }
   .conteudo { padding: 20px 14px; }
 }
@@ -4284,6 +4266,218 @@ input:focus {
 }
 
 /* ==========================================================================
+   RESPONSIVIDADE MOBILE: HISTÓRICO ESCOLAR OFICIAL DO ALUNO
+   ========================================================================== */
+.resumo-valor-parecer {
+  font-size: 1.05rem;
+}
+
+@media (max-width: 768px) {
+  .secao-historico {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .historico-acoes-topo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .botoes-historico-topo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .botoes-historico-topo .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .documento-historico-folha {
+    padding: 18px 14px;
+    margin: 0 0 20px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .documento-cabecalho {
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .documento-logo-emblema {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto;
+  }
+
+  .documento-instituicao-dados h3 {
+    font-size: 1.02rem;
+    line-height: 1.3;
+  }
+
+  .documento-instituicao-dados h4 {
+    font-size: 0.82rem;
+    line-height: 1.3;
+  }
+
+  .documento-instituicao-dados p {
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  .documento-titulo-faixa {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+
+  /* Dados cadastrais do aluno - 1 coluna fluida sem cortes no celular */
+  .documento-dados-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px 12px;
+    margin-bottom: 18px;
+  }
+
+  .d-campo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    font-size: 0.85rem;
+    border-bottom: 1px dashed #e2e8f0;
+    padding-bottom: 6px;
+  }
+
+  .d-campo:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .d-rotulo {
+    min-width: auto;
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .d-valor {
+    font-size: 0.88rem;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* Tabela de disciplinas com scroll suave */
+  .tabela-historico-wrapper {
+    margin-bottom: 18px;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .tabela-historico th {
+    padding: 8px 6px;
+    font-size: 0.74rem;
+    white-space: nowrap;
+  }
+
+  .tabela-historico td {
+    padding: 8px 6px;
+    font-size: 0.8rem;
+  }
+
+  /* Quadro resumo: 2 colunas organizadas no celular */
+  .documento-resumo-quadro {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .resumo-item {
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 8px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .resumo-titulo {
+    font-size: 0.68rem;
+    line-height: 1.25;
+    margin-bottom: 2px;
+  }
+
+  .resumo-valor {
+    font-size: 1.15rem;
+  }
+
+  .resumo-valor-parecer {
+    font-size: 0.88rem !important;
+    line-height: 1.3;
+  }
+
+  /* Assinaturas empilhadas verticalmente */
+  .documento-assinaturas-area {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    margin: 24px 0 16px;
+  }
+
+  .assinatura-bloco {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .linha-assinatura {
+    width: 100%;
+  }
+
+  .carimbo-digital-box {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .documento-resumo-quadro {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .resumo-item {
+    padding: 10px 12px;
+    text-align: left;
+  }
+
+  .resumo-titulo {
+    font-size: 0.72rem;
+  }
+
+  .resumo-valor {
+    font-size: 1.25rem;
+  }
+}
+
+/* ==========================================================================
    SUPORTE DE IMPRESSÃO UNIVERSITÁRIA (@media print)
    ========================================================================== */
 @media print {
@@ -6637,6 +6831,273 @@ input:focus {
   color: #0f2a43;
 }
 
+/* ==========================================================================
+   RESPONSIVIDADE MOBILE: DIPLOMA OFICIAL & CREDENCIAL
+   ========================================================================== */
+.diploma-titulo-texto {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .diploma-wrapper-geral {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .diploma-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .diploma-toolbar-botoes {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .diploma-toolbar-botoes .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .diploma-folha-a4-paisagem {
+    border-radius: 4px;
+  }
+
+  .diploma-borda-externa {
+    padding: 4px;
+    border-width: 3px;
+  }
+
+  .diploma-borda-interna {
+    padding: 16px 10px 14px;
+    border-width: 1.5px;
+  }
+
+  .diploma-cantoneira {
+    width: 24px;
+    height: 24px;
+  }
+
+  .diploma-cantoneira svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Cabeçalho do diploma no celular: centralizado, sem espremer */
+  .diploma-cabecalho-faculdade {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* Oculta o segundo brasão repetido no celular para dar 100% de largura aos títulos */
+  .diploma-cabecalho-faculdade .diploma-emblema-brasao:last-child {
+    display: none;
+  }
+
+  .diploma-emblema-brasao {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    padding: 3px;
+  }
+
+  .diploma-titulos-instituicao {
+    width: 100%;
+    text-align: center;
+  }
+
+  .diploma-republica {
+    font-size: 0.62rem;
+    letter-spacing: 0.6px;
+    line-height: 1.3;
+  }
+
+  .diploma-nome-faculdade {
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+    line-height: 1.25;
+    margin: 2px 0;
+  }
+
+  .diploma-departamento {
+    font-size: 0.74rem;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+    margin: 2px 0;
+  }
+
+  .diploma-credenciamento {
+    font-size: 0.65rem;
+    line-height: 1.35;
+  }
+
+  /* Faixa de título DIPLOMA */
+  .diploma-faixa-titulo-wrap {
+    margin: 6px 0 8px;
+  }
+
+  .diploma-titulo-principal {
+    font-size: 1.45rem;
+    letter-spacing: 5px;
+    margin: 3px 0;
+  }
+
+  .diploma-subtitulo-curso {
+    font-size: 0.72rem;
+    letter-spacing: 0.8px;
+    line-height: 1.35;
+  }
+
+  /* Corpo do diploma */
+  .diploma-corpo-texto {
+    padding: 0 4px;
+    margin-bottom: 10px;
+  }
+
+  .diploma-intro-concessao {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+
+  .diploma-nome-aluno-destaque {
+    margin: 6px 0 8px;
+  }
+
+  .diploma-nome-aluno-destaque h3 {
+    font-size: 1.22rem;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .diploma-friso-nome {
+    width: 80%;
+    max-width: 220px;
+  }
+
+  .diploma-texto-outorga {
+    font-size: 0.80rem;
+    line-height: 1.5;
+    text-align: center;
+    text-align-last: center;
+    margin-bottom: 6px;
+  }
+
+  .diploma-local-data {
+    font-size: 0.78rem;
+    margin-top: 2px;
+  }
+
+  /* Rodapé do diploma: selo dourado 3D em cima e assinaturas abaixo */
+  .diploma-rodape-solene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 10px;
+    padding: 0;
+  }
+
+  .diploma-selo-ouro-col {
+    order: -1;
+    margin-bottom: 4px;
+  }
+
+  .diploma-selo-medalhao-3d {
+    width: 76px;
+    height: 76px;
+  }
+
+  .diploma-selo-dentado {
+    width: 82px;
+    height: 82px;
+  }
+
+  .diploma-selo-centro {
+    width: 62px;
+    height: 62px;
+  }
+
+  .diploma-selo-logo {
+    width: 18px;
+    height: 18px;
+  }
+
+  .diploma-selo-texto-circular {
+    font-size: 0.44rem;
+  }
+
+  .diploma-selo-ano {
+    font-size: 0.54rem;
+  }
+
+  .diploma-selo-sub {
+    font-size: 0.40rem;
+  }
+
+  .diploma-assinatura-col {
+    width: 100%;
+    max-width: 240px;
+  }
+
+  .diploma-linha-assinar {
+    width: 100%;
+  }
+
+  .diploma-assinatura-col strong {
+    font-size: 0.78rem;
+  }
+
+  .diploma-assinatura-col span {
+    font-size: 0.70rem;
+  }
+
+  /* Registro notarial */
+  .diploma-notarial-registro {
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 8px;
+    margin-top: 12px;
+    font-size: 0.68rem;
+  }
+
+  .notarial-bloco {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  /* Credencial e carteirinha no celular */
+  .credencial-print-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .credencial-card-frente,
+  .credencial-card-verso {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .diploma-titulo-principal {
+    font-size: 1.25rem;
+    letter-spacing: 3px;
+  }
+
+  .diploma-nome-aluno-destaque h3 {
+    font-size: 1.1rem;
+  }
+}
+
 @media screen {
   .oculto-na-tela {
     display: none !important;
@@ -6880,10 +7341,15 @@ input:focus {
   }
 
   .diploma-cabecalho-faculdade {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     margin-bottom: 4px !important;
   }
 
-  .diploma-emblema-brasao {
+  .diploma-cabecalho-faculdade .diploma-emblema-brasao {
+    display: flex !important;
     width: 54px !important;
     height: 54px !important;
   }
@@ -6933,8 +7399,14 @@ input:focus {
   }
 
   .diploma-rodape-solene {
+    display: grid !important;
+    grid-template-columns: 1fr 160px 1fr !important;
     margin-top: 4px !important;
     gap: 12px !important;
+  }
+
+  .diploma-selo-ouro-col {
+    order: 0 !important;
   }
 
   .diploma-espaco-rubrica {

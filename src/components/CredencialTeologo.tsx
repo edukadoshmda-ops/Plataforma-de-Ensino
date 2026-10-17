@@ -180,7 +180,7 @@ export default function CredencialTeologo({
         className="credencial-print-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(330px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
           gap: 20,
           WebkitPrintColorAdjust: "exact",
           printColorAdjust: "exact",

@@ -151,7 +151,7 @@ export default function DiplomaFaculdade({
               <div className="diploma-faixa-titulo-wrap">
                 <div className="diploma-linha-dourada-fina"></div>
                 <div className="diploma-titulo-principal">
-                  <span>D I P L O M A</span>
+                  <span className="diploma-titulo-texto">D I P L O M A</span>
                 </div>
                 <div className="diploma-subtitulo-curso">
                   BACHARELADO LIVRE EM TEOLOGIA & MINISTÉRIO PASTORAL

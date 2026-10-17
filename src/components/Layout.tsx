@@ -11,7 +11,6 @@ import {
   LogOut,
   User,
   Menu,
-  X,
   ClipboardList,
   Phone,
   Sparkles,
@@ -74,9 +73,6 @@ export default function Layout() {
               <span className="logo-sub-sidebar" style={{ textAlign: "center" }}>Plataforma de Teologia Bíblica</span>
             </div>
           </Link>
-          <button className="btn-fechar-menu" onClick={() => setMenuAberto(false)} aria-label="Fechar menu">
-            <X size={20} />
-          </button>
         </div>
 
         <nav className="sidebar-nav">

@@ -330,7 +330,7 @@ export default function HistoricoEscolar({
 
             <div className="resumo-item">
               <span className="resumo-titulo">Parecer Acadêmico</span>
-              <span className="resumo-valor text-sucesso" style={{ fontSize: "1.05rem" }}>
+              <span className="resumo-valor text-sucesso resumo-valor-parecer">
                 {disciplinasConcluidas.length === historicoEscolar.length && mediaHistorico >= 7.0
                   ? "Apto para Diplomação 🎓"
                   : "Em Integralização Curricular"}
