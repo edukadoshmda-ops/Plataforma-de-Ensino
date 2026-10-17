@@ -32,6 +32,30 @@ export default function Login() {
         <span>Voltar</span>
       </Link>
       <form className="card auth-card login-card" onSubmit={enviar}>
+        <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: -6 }}>
+          <Link
+            to="/apresentacao"
+            className="btn-card-voltar"
+            title="Voltar para o início"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              color: "#475569",
+              fontSize: "0.85rem",
+              fontWeight: 600,
+              textDecoration: "none",
+              padding: "6px 12px",
+              borderRadius: 8,
+              background: "#f1f5f9",
+              border: "1px solid #e2e8f0",
+              transition: "background 0.15s ease",
+            }}
+          >
+            <ArrowLeft size={16} />
+            <span>Voltar</span>
+          </Link>
+        </div>
         <div className="auth-header">
           <div className="auth-emblema">
             <img src="/logo-teologia.png" alt="Teologia Acessível" className="logo-img-auth" />

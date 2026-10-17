@@ -1,10 +1,9 @@
-// src/data/content.js
-// Acervo Bibliográfico e Multimídia Oficial do SEBITAN
 import { GRADE_CURRICULAR, MODULOS_SEBITAN } from "./gradeCurricular.js";
+import { getPdfUrl, getAudioUrl } from "../services/storageUrlService";
 
 export { GRADE_CURRICULAR, MODULOS_SEBITAN };
 
-export const pdfs = [
+const pdfsRaw = [
   {
     "id": 1,
     "disciplinaId": "metodologia",
@@ -397,6 +396,11 @@ export const pdfs = [
   }
 ];
 
+export const pdfs = pdfsRaw.map((p) => ({
+  ...p,
+  arquivo: getPdfUrl(p.arquivo),
+}));
+
 export const audiobooks = pdfs.map((p, index) => {
   const base = [
     'metodologia_pesquisa', 'portugues_instrumental', 'bibliologia', 'manuscritos_at',
@@ -416,8 +420,8 @@ export const audiobooks = pdfs.map((p, index) => {
     moduloId: p.moduloId,
     duracao: "45 min",
     arquivo: p.arquivo,
-    arquivoMasculino: `/audio/${base}_masculino.mp3`,
-    arquivoFeminino: `/audio/${base}_feminino.mp3`,
+    arquivoMasculino: getAudioUrl(`${base}_masculino.mp3`),
+    arquivoFeminino: getAudioUrl(`${base}_feminino.mp3`),
     descricao: p.descricao,
     narrador: "Teologia Acessível Voz Oficial",
   };

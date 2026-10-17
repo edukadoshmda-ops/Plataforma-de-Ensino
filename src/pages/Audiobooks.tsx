@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { audiobooks } from "../data/content";
 import { apostilasTextoCompleto } from "../data/apostilasTextoCompleto";
 import { marcarProgresso } from "../services/progressoEstudoService.js";
+import { getPdfUrl } from "../services/storageUrlService";
 import {
   Headphones,
   Volume2,
@@ -189,7 +190,7 @@ export default function Audiobooks() {
 
                   {apostilaAtual?.pdfFilename && (
                     <a
-                      href={`/pdfs/${apostilaAtual.pdfFilename}`}
+                      href={getPdfUrl(apostilaAtual.pdfFilename)}
                       target="_blank"
                       rel="noreferrer"
                       className="btn btn-contorno btn-sm btn-com-icone"

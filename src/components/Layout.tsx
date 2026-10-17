@@ -64,11 +64,11 @@ export default function Layout() {
     <div className="app-layout">
       <aside className={`sidebar ${menuAberto ? "sidebar-aberta" : ""}`} aria-label="Navegação principal">
         <div className="sidebar-header">
-          <Link to="/" className="logo-sidebar" onClick={() => setMenuAberto(false)}>
+          <Link to="/" className="logo-sidebar" style={{ justifyContent: "center", textAlign: "center" }} onClick={() => setMenuAberto(false)}>
             <img src="/logo-teologia.png" alt="Teologia Acessível" className="logo-img-sidebar" />
-            <div className="logo-textos-sidebar">
-              <span className="logo-sigla-sidebar">Teologia Acessível</span>
-              <span className="logo-sub-sidebar">Plataforma de Ensino Bíblico</span>
+            <div className="logo-textos-sidebar" style={{ textAlign: "center", alignItems: "center" }}>
+              <span className="logo-sigla-sidebar" style={{ textAlign: "center" }}>Teologia Acessível</span>
+              <span className="logo-sub-sidebar" style={{ textAlign: "center" }}>Plataforma de Teologia Bíblica</span>
             </div>
           </Link>
           <button className="btn-fechar-menu" onClick={() => setMenuAberto(false)} aria-label="Fechar menu">

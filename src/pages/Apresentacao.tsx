@@ -24,9 +24,17 @@ export default function Apresentacao() {
       {/* Header Público */}
       <header style={{ borderBottom: "1px solid rgba(255,255,255,0.18)", backgroundColor: "#0f2a43" }}>
         <div style={{ padding: "20px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-            <img src="/logo-teologia.png" alt="Teologia Acessível" style={{ height: "72px", maxWidth: "280px", objectFit: "contain", opacity: 1, filter: "brightness(0) invert(1)" }} />
-          </div>
+          <Link to="/" style={{ display: "flex", alignItems: "center", gap: "14px", textDecoration: "none" }}>
+            <img src="/logo-teologia.png" alt="Teologia Acessível" style={{ height: "64px", maxWidth: "260px", objectFit: "contain", opacity: 1, filter: "brightness(0) invert(1)" }} />
+            <div style={{ display: "flex", flexDirection: "column", textAlign: "center", alignItems: "center" }}>
+              <span style={{ color: "#ffffff", fontSize: "1.5rem", fontWeight: "800", letterSpacing: "-0.01em", lineHeight: 1.2, textAlign: "center" }}>
+                Teologia Acessível
+              </span>
+              <span style={{ color: "#cbd5e1", fontSize: "0.85rem", fontWeight: "500", letterSpacing: "0.01em", textAlign: "center" }}>
+                Plataforma de Teologia Bíblica
+              </span>
+            </div>
+          </Link>
           <div style={{ display: "flex", gap: "15px" }}>
             <Link to="/login" className="btn btn-contorno" style={{ color: "#ffffff", borderColor: "rgba(255,255,255,0.3)", padding: "8px 16px", borderRadius: "6px", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", fontWeight: "500" }}>
               <LogIn size={16} /> Entrar

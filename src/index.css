@@ -186,7 +186,8 @@ html {
   line-height: 1.18;
   min-width: 0;
   flex: 1;
-  text-align: left;
+  text-align: center;
+  align-items: center;
 }
 
 .logo-sigla-sidebar {

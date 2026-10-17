@@ -39,7 +39,9 @@ export const MODULOS_SEBITAN = [
   },
 ];
 
-export const GRADE_CURRICULAR = [
+import { getPdfUrl } from "../services/storageUrlService";
+
+const GRADE_CURRICULAR_RAW = [
   // ==========================================
   // MÓDULO I: Fundamentação Acadêmica & Ferramentas (1 a 5)
   // ==========================================
@@ -510,3 +512,8 @@ export const GRADE_CURRICULAR = [
     descricao: "Organização administrativa da igreja, liderança servidora, planejamento estratégico, prestação de contas transparente, ata, estatutos e conformidade legal.",
   },
 ];
+
+export const GRADE_CURRICULAR = GRADE_CURRICULAR_RAW.map((item) => ({
+  ...item,
+  pdfArquivo: getPdfUrl(item.pdfArquivo),
+}));
