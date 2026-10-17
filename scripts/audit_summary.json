@@ -1,0 +1,238 @@
+[
+  {
+    "id": 1,
+    "titulo": "Metodologia da Pesquisa Científica",
+    "first_p": "1 - Introdução Este trabalho não tem a pretensão de abranger todas as questões envolvidas em Metodologia Científica. Trata-se, tão somente, de uma aju",
+    "issues": []
+  },
+  {
+    "id": 2,
+    "titulo": "Português Instrumental para Pregadores",
+    "first_p": "PORTUGUÊS INSTRUMENTAL A PALAVRA. A palavra pode ser escrita ou falada. PALAVRA ESCRITA- É a transmissão do pensamento através da grafia, de letras. P",
+    "issues": []
+  },
+  {
+    "id": 3,
+    "titulo": "Bibliologia: A Doutrina das Escrituras",
+    "first_p": "TEOLOGIA SISTEMÁTICA INTRODUÇÃO A Teologia Sistemática se preocupa em apresentar os diversos assuntos por ela estudados e suas definições em profundid",
+    "issues": []
+  },
+  {
+    "id": 4,
+    "titulo": "Manuscritos do A.T. & Crítica Textual",
+    "first_p": "Manuscritos do Antigo Testamento da Bíblia Sagrada Os manuscritos eram documentos copiados a mão. Eles eram feitos de dois materiais: o papiro e o per",
+    "issues": []
+  },
+  {
+    "id": 5,
+    "titulo": "Hermenêutica Sagrada",
+    "first_p": "HERMENÊUTICA SAGRADA Regras de Interpretação Bíblica, Exegese e Métodos Hermenêuticos Área: HERMENÊUTICA & EXEGESE BÍBLICA SEBITAN – Seminário Bíblico",
+    "issues": [
+      [
+        1,
+        "HERMENÊUTICA SAGRADA Regras de Interpretação Bíblica, Exegese e Métodos Hermenêuticos Área: HERMENÊUTICA & EXEGESE BÍBLICA SEBITAN – Seminário Bíblico e Teológico de Ananindeua SEBITAN Seminário Bíblico e Teológico de Ananindeua......................",
+        false,
+        true
+      ],
+      [
+        2,
+        "4 D - A necessidade da Hermenêutica............................................................................................. 5 III - BLOQUEIOS À COMPREENSÃO ESPONTÂNEA DA BÍBLIA .................................................... 6 1o - Históric",
+        false,
+        true
+      ],
+      [
+        3,
+        "6 a) - Costumes ............................................................................................................................... 6 b) - Pensamento ........................................................................................",
+        false,
+        true
+      ],
+      [
+        4,
+        "14 A questão da inerrância bíblica ................................................................................................... 14 Exemplos de dificuldades na Bíblia: ............................................................................",
+        false,
+        true
+      ],
+      [
+        5,
+        "16 Tipos de Interpretação do Passado ............................................................................................ 17 Aristóbulo ..........................................................................................................",
+        false,
+        true
+      ],
+      [
+        6,
+        "19 A Escola de Antioquia da Síria ..................................................................................................... 19 B - EXEGESE MEDIEVAL ..........................................................................................",
+        false,
+        true
+      ],
+      [
+        7,
+        "20 D - EXEGESE PÓS-REFORMA ....................................................................................................... 20 SEBITAN – Seminário Bíblico e Teológico de Ananindeua SEBITAN Seminário Bíblico e Teológico de Ananindeua...........",
+        false,
+        true
+      ],
+      [
+        8,
+        "22 Verdade Prescritiva - ................................................................................................................. 22 Verdade descritiva .........................................................................................",
+        false,
+        true
+      ]
+    ]
+  },
+  {
+    "id": 6,
+    "titulo": "Maneiras e Costumes dos Tempos Bíblicos",
+    "first_p": "MANEIRAS E COSTUMES DA BÍBLIA VIDA DOMÉSTICA E FAMILIAR a) AS CIDADES Eram muitas, porém pequenas. Jerusalém, Samaria e Cesaréia eram exceções. Pelas ",
+    "issues": []
+  },
+  {
+    "id": 7,
+    "titulo": "Geografia Bíblica & Cenário Histórico",
+    "first_p": "GEOGRAFIA BÍBLICA INTRODUÇÃO I – POR QUE ESTUDAR A GEOGRAFIA BÍBLICA? 1 – Torna o estudo bíblico mais vivo e real. 2 – Esclarece os relatos históricos",
+    "issues": []
+  },
+  {
+    "id": 8,
+    "titulo": "Arqueologia Bíblica: Evidências e Descobertas",
+    "first_p": "ARQUEOLOGIA INTRODUÇÃO: O Termo Essa palavra compõe-se de dois vocábulos gregos, archaios (antigo) - e logos (discurso, estudo), ou seja, estudo siste",
+    "issues": []
+  },
+  {
+    "id": 9,
+    "titulo": "Síntese do Antigo Testamento",
+    "first_p": "SÍNTESE ANTIGO TESTAMENTO SÍNTESE DE GENESIS 1. PANORAMA: O nome significa “começos” ou “origens.” O escritor foi o legislador Moisés (Éx. 17 .14; Dt ",
+    "issues": []
+  },
+  {
+    "id": 10,
+    "titulo": "Período Interbíblico: Os 400 Anos",
+    "first_p": "PERÍODO INTERBÍBLICO OS 400 ANOS ENTRE OS TESTAMENTOS O Que Aconteceu nos Séculos entre o Antigo e o Novo Testamento? Introdução: Os quatrocentos anos",
+    "issues": []
+  },
+  {
+    "id": 11,
+    "titulo": "Síntese do Novo Testamento",
+    "first_p": "SÍNTESE DO NOVO TESTAMENTO SÍNTESE DE MATEUS 1. PANORAMA: O escritor é Mateus (também chamado Levi), um publicano, isto é, coletor de impostos. Indubi",
+    "issues": []
+  },
+  {
+    "id": 12,
+    "titulo": "Tipologia & Simbologia Bíblica",
+    "first_p": "TIPOLOGIA E SIMBOLOGIA BÍBLICA INTRODUÇÃO Assim como na Bíblia Sagrada, os nomes significam alguma coisa, tanto que ao mudar o nome de uma pessoa, sua",
+    "issues": []
+  },
+  {
+    "id": 13,
+    "titulo": "Dispensações e Alianças Bíblicas",
+    "first_p": "DISPENSAÇÕES E ALIANÇAS INTRODUÇÃO AS DISPENSAÇÕES DISPENSAÇÃO: é um período de tempo no qual o homem é provado, isto é, “testado” na sua obediência a",
+    "issues": []
+  },
+  {
+    "id": 14,
+    "titulo": "Teontologia: A Doutrina de Deus Pai",
+    "first_p": "TEONTOLOGIA INTRODUÇÃO A Doutrina de Deus, em geral, é o primeiro assunto que tratamos na Teologia Sistemática pelo fato de que no estudo teológico, b",
+    "issues": []
+  },
+  {
+    "id": 15,
+    "titulo": "Angelologia Bíblica & Demonologia",
+    "first_p": "ANGELOLOGIA INTRODUÇÃO Nesta parte da teologia sistemática trataremos acerca dos anjos sob aspectos bíblicos dentro do conceito religioso. Este assunt",
+    "issues": []
+  },
+  {
+    "id": 16,
+    "titulo": "Antropologia Teológica: Doutrina do Homem",
+    "first_p": "ANTROPOLOGIA TEOLÓGICA INTRODUÇÃO: Não há uma fonte mais importante do que a Bíblia que nos ajude no entendimento da natureza e das necessidades do ho",
+    "issues": []
+  },
+  {
+    "id": 17,
+    "titulo": "Hamartiologia: A Doutrina do Pecado",
+    "first_p": "HAMARTIOLOGIA INTRODUÇÃO A doutrina do pecado é parte da teologia sistemática fundamental para formação do estudante, pois essa apresentará o problema",
+    "issues": []
+  },
+  {
+    "id": 18,
+    "titulo": "Cristologia: A Pessoa e Obra de Jesus Cristo",
+    "first_p": "I- PRÉ EXISTÊNCIA DE CRISTO No principio eterno, isto é, antes que o universo fosse criado, Cristo já existia, Jo 1.1; Cl 1.17, e possuía a mesma essê",
+    "issues": []
+  },
+  {
+    "id": 19,
+    "titulo": "Pneumatologia: A Doutrina do Espírito Santo",
+    "first_p": "PNEUMATOLOGIA INTRODUÇÃO A Pneumatologia é a doutrina teológica que trata da natureza da ação, da obra do Espírito Santo e de Sua relação com o univer",
+    "issues": []
+  },
+  {
+    "id": 20,
+    "titulo": "Soteriologia: A Doutrina da Salvação",
+    "first_p": "SOTERIOLOGIA INTRODUÇÃO A doutrina da Salvação é de suma relevância para todos que se propõem em estudar as Escrituras e percorrer a vida cristã vitor",
+    "issues": []
+  },
+  {
+    "id": 21,
+    "titulo": "Eclesiologia: A Doutrina da Igreja",
+    "first_p": "ECLESIOLOGIA INTRODUÇÃO O ensino das Escrituras acerca da igreja é tão claro e positivo quanto o que diz respeito a qualquer outra doutrina; contudo, ",
+    "issues": []
+  },
+  {
+    "id": 22,
+    "titulo": "Escatologia Bíblica: O Estudo das Últimas Coisas",
+    "first_p": "01) EXEMPLO DE INTERPRETAÇÃO DAS ESCRiTURAS Ao iniciar este trabalho, queremos citar alguns princípios da Escatologia e hermenêutica: Formas de interp",
+    "issues": []
+  },
+  {
+    "id": 23,
+    "titulo": "Apologética Cristã",
+    "first_p": "APOLOGÉTICA Definição: A apologética é a ciência ou disciplina racional que se esforça por apresentar a defesa da fé religiosa, existindo dentro e for",
+    "issues": []
+  },
+  {
+    "id": 24,
+    "titulo": "A Bíblia e a Ciência: Harmonia das Origens",
+    "first_p": "A BÍBLIA E A CIÊNCIA INTRODUÇÃO “No princípio criou Deus os céus e a Terra...” (Gn 1.1) Desde os primórdios da humanidade ela tem se questionado sobre",
+    "issues": []
+  },
+  {
+    "id": 25,
+    "titulo": "Heresiologia: O Discernimento das Seitas",
+    "first_p": "INTRODUÇÃO Existe 10 grandes religiões no mundo, além do Cristianismo. São elas: Budismo, Confucionismo; Hinduismo; Taoismo; Jainismo; Xintoismo; Zoro",
+    "issues": []
+  },
+  {
+    "id": 26,
+    "titulo": "Religiões Mundiais I: Cultos e Tradições",
+    "first_p": "UNIDADE 1 A RELIGIÃO ELEMENTAR INTRODUÇÃO O homem é um ser essencialmente religioso. A eternidade, ou a imagem eterna de Deus (Gn. 1.27; Ec 3.11), imp",
+    "issues": []
+  },
+  {
+    "id": 27,
+    "titulo": "Discipulado Bíblico & Formação Cristã",
+    "first_p": "LIÇÃO 1 A MISSÃO DA IGREJA A. A IGREJA FOI ESTABELECIDA PARA ADORAR A DEUS A adoração se constitui de ações e atitudes que reverencia m e honram a dig",
+    "issues": []
+  },
+  {
+    "id": 28,
+    "titulo": "Homilética & Oratória Sagrada",
+    "first_p": "HOMILÉTICA INDICE INTRODUÇAO PARTE I INTRODUÇÃO I. ASSUNTOS PRELIMINARES A. Definição de homilética B. Como ser eficaz C. Duas idéias erradas sobre ho",
+    "issues": [
+      [
+        1,
+        "HOMILÉTICA INDICE INTRODUÇAO PARTE I INTRODUÇÃO I. ASSUNTOS PRELIMINARES A. Definição de homilética B. Como ser eficaz C. Duas idéias erradas sobre homilética D. Quatro áreas da homilética II. O PREGADOR A. O Pregador chamado por Deus B. Qualidades d",
+        true,
+        false
+      ]
+    ]
+  },
+  {
+    "id": 29,
+    "titulo": "Evangelismo Prático & Ministério Pessoal",
+    "first_p": "INTRODUÇÃO O DEVER DE GANHAR ALMAS “Nós não ganhamos almas porque isso nos faz estremecer; ganhamos almas porque possuímos caráter suficiente para obe",
+    "issues": []
+  },
+  {
+    "id": 30,
+    "titulo": "Administração Eclesiástica & Legislação da Igreja",
+    "first_p": "ADMINISTRAÇÃO ECLESIÁSTICA INTRODUÇÃO “Administração Eclesiástica é um trabalho de fôlego, eu diria ainda, é um manancial de conhecimentos e ensinos p",
+    "issues": []
+  }
+]
