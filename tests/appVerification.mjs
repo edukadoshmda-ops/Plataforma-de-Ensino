@@ -78,6 +78,7 @@ const diplomaSrc = fs.readFileSync('src/components/DiplomaFaculdade.tsx', 'utf-8
 test('Diploma inclui assinatura do Coordenador', diplomaSrc.includes('assinatura-coordenador.png'));
 test('Diploma inclui assinatura da Secretária', diplomaSrc.includes('assinatura-secretaria.png'));
 test('Diploma possui texto ministerial solene aprovado', diplomaSrc.includes('fidelidade doutrinária') && diplomaSrc.includes('Bacharelado Livre em Teologia Bíblica e Prática Pastoral'));
+test('Diploma possui cabeçalho de Instituição de Ensino Bíblico e Teológico & Ministério Pastoral', diplomaSrc.includes('INSTITUIÇÃO DE ENSINO BÍBLICO E TEOLÓGICO & MINISTÉRIO PASTORAL'));
 
 const historicoSrc = fs.readFileSync('src/components/testes/HistoricoEscolar.tsx', 'utf-8');
 test('Histórico possui assinaturas do Coordenador e Secretária', historicoSrc.includes('assinatura-coordenador.png') && historicoSrc.includes('assinatura-secretaria.png'));

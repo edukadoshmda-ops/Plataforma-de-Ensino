@@ -69,7 +69,7 @@ export default function DiplomaFaculdade({
           <Award size={20} color="var(--amarelo)" />
           <div>
             <strong>Diploma Oficial — Teologia Acessível</strong>
-            <span>Padrão Faculdade Teológica de Ensino Superior • Formato A4 Paisagem</span>
+            <span>Instituição de Ensino Bíblico e Teológico & Ministério Pastoral • Formato A4 Paisagem</span>
           </div>
         </div>
         <div className="diploma-toolbar-botoes">
@@ -137,7 +137,7 @@ export default function DiplomaFaculdade({
                 <div className="diploma-titulos-instituicao">
                   <span className="diploma-republica">REPÚBLICA FEDERATIVA DO BRASIL • ESTADO DO PARÁ</span>
                   <h1 className="diploma-nome-faculdade">TEOLOGIA ACESSÍVEL</h1>
-                  <h2 className="diploma-departamento">FACULDADE DE ENSINO TEOLÓGICO SUPERIOR & MINISTÉRIO PASTORAL</h2>
+                  <h2 className="diploma-departamento">INSTITUIÇÃO DE ENSINO BÍBLICO E TEOLÓGICO & MINISTÉRIO PASTORAL</h2>
                   <p className="diploma-credenciamento">
                     Instituição de Formação Teológica e Eclesiástica Livre • Registrada sob os Atos Regimentais e Estatutos Canônicos
                   </p>
