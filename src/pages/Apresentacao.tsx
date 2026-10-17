@@ -44,22 +44,23 @@ export default function Apresentacao() {
             <button
               onClick={() => setModalInstalarAberto(true)}
               style={{
-                backgroundColor: "rgba(244, 180, 0, 0.15)",
-                border: "1px solid #f4b400",
+                backgroundColor: "rgba(244, 180, 0, 0.12)",
+                border: "1.5px solid #f4b400",
                 color: "#f4b400",
-                padding: "8px 14px",
-                borderRadius: "6px",
+                padding: "8px 16px",
+                borderRadius: "8px",
                 fontWeight: "700",
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "7px",
+                gap: "8px",
                 cursor: "pointer",
-                fontSize: "0.86rem",
+                fontSize: "0.88rem",
+                transition: "all 0.2s ease",
               }}
               title="Instalar Aplicativo Oficial no seu celular ou PC"
             >
-              <Download size={15} />
-              <span>Instalar App</span>
+              <Download size={16} />
+              <span>Instalar Aplicativo</span>
             </button>
             <Link to="/login" className="btn btn-contorno" style={{ color: "#ffffff", borderColor: "rgba(255,255,255,0.3)", padding: "8px 16px", borderRadius: "6px", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", fontWeight: "500" }}>
               <LogIn size={16} /> Entrar
@@ -91,9 +92,33 @@ export default function Apresentacao() {
         <p style={{ fontSize: "1.25rem", color: "#475569", marginBottom: "40px", lineHeight: "1.6" }}>
           Estude e aprenda Teologia no conforto da sua casa, no horário que preferir e no seu próprio ritmo. Escolha a disciplina que deseja estudar, organize sua rotina e avance de acordo com os seus objetivos, sem abrir mão da profundidade bíblica e da qualidade do ensino. Tenha acesso a apostilas em PDF, audiobooks, preleções em estúdio e um Tutor IA exclusivo para acompanhar sua jornada. Aprenda onde estiver, pelo computador ou celular, com liberdade para revisar os conteúdos e construir uma formação sólida para a vida cristã e o ministério.
         </p>
-        <Link to="/cadastro" style={{ backgroundColor: "#0f2a43", color: "#ffffff", padding: "18px 36px", fontSize: "1.2rem", borderRadius: "8px", textDecoration: "none", fontWeight: "bold", display: "inline-block", boxShadow: "0 4px 15px rgba(15, 42, 67, 0.2)" }}>
-          Quero me Matricular Hoje
-        </Link>
+        <div style={{ display: "flex", gap: "16px", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
+          <Link to="/cadastro" style={{ backgroundColor: "#0f2a43", color: "#ffffff", padding: "18px 36px", fontSize: "1.2rem", borderRadius: "8px", textDecoration: "none", fontWeight: "bold", display: "inline-flex", alignItems: "center", gap: "10px", boxShadow: "0 4px 15px rgba(15, 42, 67, 0.2)" }}>
+            Quero me Matricular Hoje
+          </Link>
+          <button
+            onClick={() => setModalInstalarAberto(true)}
+            style={{
+              backgroundColor: "rgba(244, 180, 0, 0.12)",
+              border: "2px solid #f4b400",
+              color: "#f4b400",
+              padding: "16px 28px",
+              fontSize: "1.1rem",
+              borderRadius: "8px",
+              fontWeight: "700",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              cursor: "pointer",
+              boxShadow: "0 4px 12px rgba(244, 180, 0, 0.15)",
+              transition: "all 0.2s ease",
+            }}
+            title="Instalar Aplicativo Oficial no seu celular ou PC"
+          >
+            <Download size={20} />
+            <span>Instalar Aplicativo</span>
+          </button>
+        </div>
       </section>
 
       {/* Tabela de Preços e Planos de Formação */}
@@ -345,9 +370,33 @@ export default function Apresentacao() {
         <p style={{ fontSize: "1.2rem", marginBottom: "40px", maxWidth: "600px", margin: "0 auto 40px auto", color: "#cbd5e1", lineHeight: "1.6" }}>
           Faça parte de uma geração de cristãos que conhecem a Palavra em profundidade e estão prontos para defender sua fé.
         </p>
-        <Link to="/cadastro" style={{ backgroundColor: "#ffffff", color: "#0f2a43", padding: "18px 40px", fontSize: "1.2rem", borderRadius: "8px", textDecoration: "none", fontWeight: "bold", display: "inline-block", boxShadow: "0 4px 15px rgba(0,0,0,0.2)" }}>
-          Garantir Minha Vaga
-        </Link>
+        <div style={{ display: "flex", gap: "16px", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
+          <Link to="/cadastro" style={{ backgroundColor: "#ffffff", color: "#0f2a43", padding: "18px 40px", fontSize: "1.2rem", borderRadius: "8px", textDecoration: "none", fontWeight: "bold", display: "inline-block", boxShadow: "0 4px 15px rgba(0,0,0,0.2)" }}>
+            Garantir Minha Vaga
+          </Link>
+          <button
+            onClick={() => setModalInstalarAberto(true)}
+            style={{
+              backgroundColor: "rgba(244, 180, 0, 0.15)",
+              border: "2px solid #f4b400",
+              color: "#f4b400",
+              padding: "16px 32px",
+              fontSize: "1.15rem",
+              borderRadius: "8px",
+              fontWeight: "700",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              cursor: "pointer",
+              boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
+              transition: "all 0.2s ease",
+            }}
+            title="Instalar Aplicativo Oficial no seu celular ou PC"
+          >
+            <Download size={20} />
+            <span>Instalar Aplicativo</span>
+          </button>
+        </div>
       </section>
 
       {/* Footer */}
