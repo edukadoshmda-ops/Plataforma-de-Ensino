@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   BookOpen,
@@ -15,9 +16,13 @@ import {
   Truck,
   CheckCircle2,
   Lock,
+  Download,
 } from "lucide-react";
+import ModalInstalarApp from "../components/ModalInstalarApp";
 
 export default function Apresentacao() {
+  const [modalInstalarAberto, setModalInstalarAberto] = useState(false);
+
   return (
     <div className="apresentacao-pagina" style={{ backgroundColor: "#ffffff", minHeight: "100vh", color: "#1e293b", fontFamily: "system-ui, -apple-system, sans-serif" }}>
       
@@ -35,7 +40,27 @@ export default function Apresentacao() {
               </span>
             </div>
           </Link>
-          <div style={{ display: "flex", gap: "15px" }}>
+          <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }}>
+            <button
+              onClick={() => setModalInstalarAberto(true)}
+              style={{
+                backgroundColor: "rgba(244, 180, 0, 0.15)",
+                border: "1px solid #f4b400",
+                color: "#f4b400",
+                padding: "8px 14px",
+                borderRadius: "6px",
+                fontWeight: "700",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "7px",
+                cursor: "pointer",
+                fontSize: "0.86rem",
+              }}
+              title="Instalar Aplicativo Oficial no seu celular ou PC"
+            >
+              <Download size={15} />
+              <span>Instalar App</span>
+            </button>
             <Link to="/login" className="btn btn-contorno" style={{ color: "#ffffff", borderColor: "rgba(255,255,255,0.3)", padding: "8px 16px", borderRadius: "6px", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", fontWeight: "500" }}>
               <LogIn size={16} /> Entrar
             </Link>
@@ -332,6 +357,11 @@ export default function Apresentacao() {
           Amparado pelo Decreto Presidencial nº 5.154/2004 e Deliberação CEE 14/97 (Indicação CEE 14/97).
         </p>
       </footer>
+
+      <ModalInstalarApp
+        aberto={modalInstalarAberto}
+        onFechar={() => setModalInstalarAberto(false)}
+      />
 
     </div>
   );

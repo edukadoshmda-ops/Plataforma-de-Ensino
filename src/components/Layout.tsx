@@ -17,8 +17,10 @@ import {
   Sparkles,
   BookMarked,
   ShieldCheck,
+  Download,
 } from "lucide-react";
 import TutorWidget from "./TutorWidget";
+import ModalInstalarApp from "./ModalInstalarApp";
 
 const links = [
   { to: "/", label: "Início", icone: Compass },
@@ -40,6 +42,7 @@ export default function Layout() {
   const location = useLocation();
   const [menuAberto, setMenuAberto] = useState(false);
   const [tutorAberto, setTutorAberto] = useState(false);
+  const [modalInstalarAberto, setModalInstalarAberto] = useState(false);
 
   const sair = () => {
     logout();
@@ -122,6 +125,32 @@ export default function Layout() {
           })}
         </nav>
 
+        <div style={{ padding: "0 14px 10px 14px" }}>
+          <button
+            onClick={() => setModalInstalarAberto(true)}
+            style={{
+              width: "100%",
+              backgroundColor: "rgba(244, 180, 0, 0.12)",
+              border: "1px solid #f4b400",
+              color: "#f4b400",
+              borderRadius: "8px",
+              padding: "10px 12px",
+              fontSize: "0.86rem",
+              fontWeight: "700",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+            }}
+            title="Instalar Aplicativo Oficial no seu celular ou PC"
+          >
+            <Download size={16} />
+            <span>Instalar Aplicativo</span>
+          </button>
+        </div>
+
         <div className="sidebar-footer">
           {usuario && (
             <div className="sidebar-usuario-area">
@@ -159,6 +188,26 @@ export default function Layout() {
             </div>
           </Link>
           <div className="mobile-topbar-acoes">
+            <button
+              onClick={() => setModalInstalarAberto(true)}
+              style={{
+                backgroundColor: "rgba(244, 180, 0, 0.15)",
+                border: "1px solid #f4b400",
+                color: "#f4b400",
+                borderRadius: "6px",
+                padding: "5px 9px",
+                fontSize: "0.75rem",
+                fontWeight: "700",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "5px",
+                cursor: "pointer",
+              }}
+              title="Instalar Aplicativo Oficial"
+            >
+              <Download size={13} />
+              <span>Instalar</span>
+            </button>
             {usuario && (
               <span className="mobile-usuario-nome" title={usuario.nome}>
                 <User size={14} /> {getNomeExibicao(usuario.nome)}
@@ -190,6 +239,11 @@ export default function Layout() {
         aberto={tutorAberto}
         setAberto={setTutorAberto}
         showFab={false}
+      />
+
+      <ModalInstalarApp
+        aberto={modalInstalarAberto}
+        onFechar={() => setModalInstalarAberto(false)}
       />
     </div>
   );

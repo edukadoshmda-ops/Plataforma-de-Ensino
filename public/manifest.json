@@ -1,0 +1,33 @@
+{
+  "name": "Teologia Acessível – Plataforma de Teologia Bíblica",
+  "short_name": "Teologia Acessível",
+  "description": "Plataforma de ensino teológico livre, compêndios em PDF, audiobooks, preleções em vídeo e histórico oficial.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f2a43",
+  "theme_color": "#0f2a43",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "pt-BR",
+  "categories": ["education", "books"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/maskable-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

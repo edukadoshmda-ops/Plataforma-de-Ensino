@@ -3,15 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo-teologia.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0f2a43" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Teologia Acessível" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Teologia Acessível. Plataforma de estudos teológicos livres, playbooks em PDF, audiobooks e provas acadêmicas."
+      content="Teologia Acessível. Plataforma de estudos teológicos livres, compêndios em PDF, audiobooks e provas acadêmicas."
     />
     <title>Teologia Acessível – Plataforma de Teologia Bíblica</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>
