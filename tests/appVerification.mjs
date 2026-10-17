@@ -118,6 +118,13 @@ const matSrc = fs.readFileSync('src/pages/Matricula.tsx', 'utf-8');
 test('Matrícula gera código com prefixo oficial TA-', matSrc.includes('TA-${new Date().getFullYear()}'));
 test('Matrícula possui seletor prévio de plano', matSrc.includes('pagamento-planos-seletor'));
 
+// 9. ACESSO VITALÍCIO NAS PÁGINAS DE VENDA E CHECKOUT
+console.log('\n9. Acesso Vitalício nas Páginas de Venda e Matrícula');
+test('Apresentação destaca Acesso Vitalício na oferta', apresSrc.includes('Acesso Vitalício') && apresSrc.includes('ACESSO VITALÍCIO'));
+test('Apresentação possui selos e cards de Acesso Vitalício', apresSrc.includes('plano-vitalicio-badge') && apresSrc.includes('Acesso Vitalício Garantido'));
+test('Pagamento destaca Acesso Vitalício nos planos e resumo', pagSrc.includes('Acesso VITALÍCIO') && pagSrc.includes('Acesso Vitalício'));
+test('Matrícula exibe opção de Acesso Vitalício', matSrc.includes('Acesso Vitalício'));
+
 console.log('\n====================================================');
 console.log(`TOTAL: ${aprovados} APROVADOS / ${falhas} FALHAS EM ${totalTestes} TESTES`);
 console.log('====================================================\n');
