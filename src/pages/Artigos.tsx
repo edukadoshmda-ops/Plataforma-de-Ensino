@@ -31,9 +31,10 @@ export interface ArtigoItem {
   autoral?: boolean;
 }
 
-const STORAGE_KEY_ARTIGOS = "ta_artigos_publicados_v1";
+const STORAGE_KEY_ARTIGOS = "ta_artigos_publicados_v2";
 
 const CATEGORIAS_TEOLOGICAS = [
+  "Todos",
   "Teologia Sistemática",
   "Exegese & Hermenêutica",
   "Teologia Pastoral",
@@ -45,33 +46,28 @@ const CATEGORIAS_TEOLOGICAS = [
 
 export default function Artigos() {
   const { usuario } = useAuth();
+  const [categoriaAtiva, setCategoriaAtiva] = useState("Todos");
+  const [buscaTexto, setBuscaTexto] = useState("");
 
   const [listaArtigos, setListaArtigos] = useState<ArtigoItem[]>(() => {
     try {
       const salvos = localStorage.getItem(STORAGE_KEY_ARTIGOS);
       if (salvos) {
         const parsed = JSON.parse(salvos);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed.map((item: ArtigoItem) => ({
-            ...item,
-            autor: item.autor ? item.autor.replace(/SEBITAN/gi, "Teologia Acessível") : "Corpo Docente Teologia Acessível",
-          }));
+        if (Array.isArray(parsed) && parsed.length >= artigosIniciais.length) {
+          return parsed;
         }
       }
     } catch (e) {
       console.error("Erro ao carregar artigos:", e);
     }
-    return artigosIniciais.map((a) => ({
-      ...a,
-      categoria: "Teologia Sistemática",
-      tempoLeitura: "8 min",
-    }));
+    return artigosIniciais as unknown as ArtigoItem[];
   });
 
   const [aberto, setAberto] = useState<number | string | null>(() =>
-    listaArtigos.length > 0 ? listaArtigos[0].id : null
+    artigosIniciais.length > 0 ? artigosIniciais[0].id : null
   );
-  const [mostrarFormulario, setMostrarFormulario] = useState(true);
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [editandoId, setEditandoId] = useState<number | string | null>(null);
 
   const [titulo, setTitulo] = useState("");
@@ -82,6 +78,18 @@ export default function Artigos() {
   const [conteudo, setConteudo] = useState("");
   const [mensagemSucesso, setMensagemSucesso] = useState("");
   const [erroForm, setErroForm] = useState("");
+
+  const artigosFiltrados = listaArtigos.filter((art) => {
+    const matchCat = categoriaAtiva === "Todos" || art.categoria === categoriaAtiva;
+    const q = buscaTexto.trim().toLowerCase();
+    const matchBusca =
+      !q ||
+      art.titulo.toLowerCase().includes(q) ||
+      (art.subtitulo && art.subtitulo.toLowerCase().includes(q)) ||
+      art.conteudo.toLowerCase().includes(q) ||
+      (art.autor && art.autor.toLowerCase().includes(q));
+    return matchCat && matchBusca;
+  });
 
   useEffect(() => {
     try {
@@ -457,8 +465,65 @@ export default function Artigos() {
         </form>
       )}
 
+      {/* Barra de Filtro e Pesquisa */}
+      <div
+        className="card"
+        style={{
+          marginBottom: 20,
+          padding: 16,
+          display: "flex",
+          flexDirection: "column",
+          gap: 14,
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+          <div style={{ flex: "1 1 280px" }}>
+            <input
+              type="text"
+              value={buscaTexto}
+              onChange={(e) => setBuscaTexto(e.target.value)}
+              placeholder="Buscar artigo por título, tema, palavra-chave ou autor..."
+              style={{
+                width: "100%",
+                padding: "10px 14px",
+                borderRadius: 8,
+                border: "1px solid #cbd5e1",
+                fontSize: "0.95rem",
+              }}
+            />
+          </div>
+          <div style={{ fontSize: "0.88rem", color: "#64748b", fontWeight: 600 }}>
+            {artigosFiltrados.length} de {listaArtigos.length} artigos disponíveis
+          </div>
+        </div>
+
+        {/* Pílulas de Categorias */}
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          {CATEGORIAS_TEOLOGICAS.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setCategoriaAtiva(cat)}
+              style={{
+                padding: "6px 14px",
+                borderRadius: 999,
+                fontSize: "0.82rem",
+                fontWeight: 600,
+                border: categoriaAtiva === cat ? "1px solid #0f2a43" : "1px solid #e2e8f0",
+                background: categoriaAtiva === cat ? "#0f2a43" : "#ffffff",
+                color: categoriaAtiva === cat ? "#ffffff" : "#475569",
+                cursor: "pointer",
+                transition: "all 0.2s",
+              }}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="artigos-container">
-        {listaArtigos.map((a) => (
+        {artigosFiltrados.map((a) => (
           <article key={a.id} className="card artigo">
             <button
               className="cabecalho-artigo"

@@ -66,6 +66,10 @@ export default function Layout() {
         <div className="sidebar-header">
           <Link to="/" className="logo-sidebar" onClick={() => setMenuAberto(false)}>
             <img src="/logo-teologia.png" alt="Teologia Acessível" className="logo-img-sidebar" />
+            <div className="logo-textos-sidebar">
+              <span className="logo-sigla-sidebar">Teologia Acessível</span>
+              <span className="logo-sub-sidebar">Plataforma de Ensino Bíblico</span>
+            </div>
           </Link>
           <button className="btn-fechar-menu" onClick={() => setMenuAberto(false)} aria-label="Fechar menu">
             <X size={20} />

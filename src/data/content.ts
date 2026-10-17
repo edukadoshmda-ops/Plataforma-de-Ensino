@@ -434,15 +434,9 @@ export const videos = pdfs.map((p) => ({
   descricao: p.descricao,
 }));
 
-export const artigos = [
-  {
-    id: 1,
-    titulo: "A Importância da Teologia Sistemática na Vida Pastoral",
-    autor: "Corpo Docente Teologia Acessível",
-    data: "15/09/2026",
-    conteudo: "A teologia sistemática não é mero exercício intelectual, mas o alicerce pelo qual o pastor defende a sã doutrina e pastoreia as almas com discernimento bíblico.",
-  }
-];
+import { artigosOficiais30 } from "./artigosData";
+
+export const artigos = artigosOficiais30;
 
 export const testes = pdfs.map((p) => ({
   id: p.id,
