@@ -1,15 +1,17 @@
 // public/sw.js
 // Service Worker do PWA Teologia Acessível
 
-const CACHE_NAME = "teologia-acessivel-v5";
+const CACHE_NAME = "teologia-acessivel-v6";
 const ASSETS_TO_CACHE = [
   "/",
   "/index.html",
   "/manifest.json",
   "/logo-teologia.png",
-  "/pwa-192x192.png",
-  "/pwa-512x512.png",
-  "/apple-touch-icon.png"
+  "/icon-192x192.png",
+  "/icon-512x512.png",
+  "/icon-maskable-512x512.png",
+  "/apple-touch-icon.png",
+  "/favicon.ico"
 ];
 
 // Instalação do Service Worker
@@ -21,7 +23,7 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// Ativação e limpeza de caches antigos
+// Ativação e limpeza de caches antigos imediata
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -36,9 +38,8 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Interceptação de requisições: Cache First para estáticos essenciais, Network First para dados
+// Interceptação de requisições
 self.addEventListener("fetch", (event) => {
-  // Ignora requisições de áudios pesados, PDFs externos ou APIs do Supabase
   const url = event.request.url;
   if (
     url.includes("/storage/v1/object") ||
@@ -49,10 +50,25 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Para manifest e ícones, sempre busque na rede primeiro para garantir atualização instantânea
+  if (url.includes("manifest.json") || url.includes("/icon-") || url.includes("/pwa-") || url.includes("favicon")) {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
-        // Atualiza o cache em segundo plano (stale-while-revalidate)
         fetch(event.request)
           .then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {
@@ -64,7 +80,6 @@ self.addEventListener("fetch", (event) => {
       }
 
       return fetch(event.request).catch(() => {
-        // Fallback para offline
         if (event.request.mode === "navigate") {
           return caches.match("/");
         }
