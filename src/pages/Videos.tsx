@@ -653,8 +653,8 @@ export default function Videos() {
       </div>
 
       {/* 2. ÁREA DA GRADE DE VÍDEOS (30 DISCIPLINAS ALINHADAS) */}
-      <div className="playbooks-secao-inferior" style={{ marginTop: 24 }}>
-        <div className="secao-disciplinas-topo">
+      <div className="secao-disciplinas-inferior" style={{ marginTop: 24 }}>
+        <div className="secao-disciplinas-cabecalho">
           <div>
             <h3 className="secao-disciplinas-titulo">
               <Video size={20} className="icone-titulo" /> Grade Oficial de Videoaulas ({filtrados.length} de {VIDEOAULAS_OFICIAIS.length})
@@ -677,29 +677,19 @@ export default function Videos() {
         </div>
 
         {/* Abas de Filtro por Módulo */}
-        <div
-          style={{
-            display: "flex",
-            gap: 8,
-            overflowX: "auto",
-            paddingBottom: 10,
-            marginBottom: 16,
-          }}
-        >
+        <div className="filtro-modulos-pills">
           <button
             type="button"
             className={`btn ${moduloFiltro === 0 ? "btn-primario" : "btn-contorno"}`}
-            style={{ fontSize: "0.82rem", padding: "6px 14px", whiteSpace: "nowrap" }}
             onClick={() => setModuloFiltro(0)}
           >
-            Todos os Módulos (30)
+            Todos ({VIDEOAULAS_OFICIAIS.length})
           </button>
           {MODULOS_SEBITAN.map((mod) => (
             <button
               key={mod.id}
               type="button"
               className={`btn ${moduloFiltro === mod.id ? "btn-primario" : "btn-contorno"}`}
-              style={{ fontSize: "0.82rem", padding: "6px 14px", whiteSpace: "nowrap" }}
               onClick={() => setModuloFiltro(mod.id)}
             >
               Módulo {mod.id} ({VIDEOAULAS_OFICIAIS.filter((v) => v.moduloId === mod.id).length})
@@ -791,7 +781,7 @@ export default function Videos() {
                 </div>
 
                 {/* Coluna 3: Botão de Ação */}
-                <div className="disciplina-acao-col" style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <div className="disciplina-acao-col">
                   <button
                     className={`btn-selecionar-audio ${ativo ? "btn-selecionar-ativo" : ""}`}
                     onClick={(e) => {
