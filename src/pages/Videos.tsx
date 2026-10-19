@@ -2,6 +2,12 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import { GRADE_CURRICULAR, MODULOS_SEBITAN } from "../data/gradeCurricular";
 import { marcarProgresso } from "../services/progressoEstudoService.js";
 import {
+  obterVideoaulasPersonalizadas,
+  restaurarVideoaulasPersonalizadas,
+  salvarVideoaulaPersonalizada,
+} from "../services/supabaseClient";
+import { useAuth } from "../context/AuthContext";
+import {
   Video,
   PlayCircle,
   Play,
@@ -24,7 +30,6 @@ import {
   PlusCircle,
   Edit3,
   RotateCcw,
-  Trash2,
 } from "lucide-react";
 import CadernoAnotacoes from "../components/CadernoAnotacoes";
 
@@ -62,11 +67,23 @@ function carregarCustomizacoes(): Record<string, CustomizacaoVideo> {
 }
 
 function salvarCustomizacoes(dados: Record<string, CustomizacaoVideo>) {
-  try {
-    localStorage.setItem(STORAGE_KEY_CUSTOM_VIDEOS, JSON.stringify(dados));
-  } catch (e) {
-    console.error("Erro ao salvar vídeos customizados:", e);
+  localStorage.setItem(STORAGE_KEY_CUSTOM_VIDEOS, JSON.stringify(dados));
+}
+
+function mensagemErroPersistencia(erro: unknown): string {
+  const registro = typeof erro === "object" && erro !== null ? erro as Record<string, unknown> : {};
+  const detalhe =
+    erro instanceof Error
+      ? erro.message
+      : [registro.message, registro.details, registro.hint]
+          .filter((valor): valor is string => typeof valor === "string" && valor.length > 0)
+          .join(" ");
+  const codigo = typeof registro.code === "string" ? registro.code : "";
+  const diagnostico = `${detalhe} ${codigo}`.trim() || String(erro);
+  if (diagnostico.includes("videoaulas_personalizadas") && /does not exist|schema cache|not found/i.test(diagnostico)) {
+    return "A tabela de videoaulas ainda não existe no Supabase. Aplique o SQL supabase/migrations/20261019000000_persist_videoaulas.sql no painel do Supabase.";
   }
+  return diagnostico;
 }
 
 // Ícone oficial do YouTube em SVG
@@ -305,7 +322,14 @@ export const VIDEOAULAS_OFICIAIS = GRADE_CURRICULAR.map((disc) => {
 });
 
 export default function Videos() {
-  const [customizacoes, setCustomizacoes] = useState(() => carregarCustomizacoes());
+  const { usuario, isConfiguredSupabase } = useAuth();
+  const podeEditarVideos = !isConfiguredSupabase || usuario?.role === "superadmin" || usuario?.role === "professor";
+  const [customizacoes, setCustomizacoes] = useState(() =>
+    isConfiguredSupabase ? {} : carregarCustomizacoes(),
+  );
+  const [carregandoVideos, setCarregandoVideos] = useState(isConfiguredSupabase);
+  const [erroPersistencia, setErroPersistencia] = useState("");
+  const [salvandoVideo, setSalvandoVideo] = useState(false);
 
   // Constrói a lista combinando a grade oficial com as customizações salvas pelo usuário
   const listaAulas = useMemo(() => {
@@ -325,7 +349,53 @@ export default function Videos() {
     });
   }, [customizacoes]);
 
-  const [selecionado, setSelecionado] = useState(() => listaAulas[0]);
+  useEffect(() => {
+    if (!isConfiguredSupabase) {
+      return;
+    }
+
+    let cancelado = false;
+
+    const carregarDoSupabase = async () => {
+      try {
+        let remotos = await obterVideoaulasPersonalizadas();
+        const locais = carregarCustomizacoes();
+        const locaisAindaNaoSincronizados = Object.entries(locais).filter(
+          ([disciplinaId]) => !remotos[disciplinaId],
+        );
+
+        if (podeEditarVideos && locaisAindaNaoSincronizados.length > 0) {
+          await Promise.all(
+            locaisAindaNaoSincronizados.map(([disciplinaId, video]) =>
+              salvarVideoaulaPersonalizada(disciplinaId, video),
+            ),
+          );
+          remotos = await obterVideoaulasPersonalizadas();
+        }
+
+        if (!cancelado) {
+          setErroPersistencia("");
+          setCustomizacoes(remotos);
+        }
+      } catch (erro: unknown) {
+        if (!cancelado) {
+          setErroPersistencia(`Falha ao carregar os vídeos salvos: ${mensagemErroPersistencia(erro)}`);
+        }
+      } finally {
+        if (!cancelado) {
+          setCarregandoVideos(false);
+        }
+      }
+    };
+
+    void carregarDoSupabase();
+    return () => {
+      cancelado = true;
+    };
+  }, [isConfiguredSupabase, podeEditarVideos]);
+
+  const [selecionadoId, setSelecionadoId] = useState(VIDEOAULAS_OFICIAIS[0].id);
+  const selecionado = listaAulas.find((aula) => aula.id === selecionadoId) || listaAulas[0];
   const [pesquisa, setPesquisa] = useState("");
   const [moduloFiltro, setModuloFiltro] = useState<number | 0>(0);
   const leitorRef = useRef<HTMLDivElement>(null);
@@ -385,7 +455,7 @@ export default function Videos() {
     setTimeout(() => setComandoCopiado(false), 2200);
   };
 
-  const handleSalvarVideo = (e: React.FormEvent) => {
+  const handleSalvarVideo = async (e: React.FormEvent) => {
     e.preventDefault();
     setErroCadastrar("");
 
@@ -395,42 +465,61 @@ export default function Videos() {
       return;
     }
 
+    const video: CustomizacaoVideo = {
+      youtubeId: yId,
+      tituloCanal: tituloCadastrar.trim() || `Aula: ${disciplinaAlvo}`,
+      duracao: duracaoCadastrar.trim() || "YouTube",
+    };
     const novasCustom = {
       ...customizacoes,
-      [disciplinaAlvo]: {
-        youtubeId: yId,
-        tituloCanal: tituloCadastrar.trim() || `Aula: ${disciplinaAlvo}`,
-        duracao: duracaoCadastrar.trim() || "YouTube",
-      },
+      [disciplinaAlvo]: video,
     };
 
-    setCustomizacoes(novasCustom);
-    salvarCustomizacoes(novasCustom);
-    setSucessoCadastrar("Videoaula vinculada com sucesso!");
+    setSalvandoVideo(true);
+    setErroPersistencia("");
+    try {
+      if (isConfiguredSupabase) {
+        await salvarVideoaulaPersonalizada(disciplinaAlvo, video);
+      } else {
+        salvarCustomizacoes(novasCustom);
+      }
 
-    // Atualiza selecionado se for a aula alterada
-    const alterada = listaAulas.find((a) => a.disciplinaId === disciplinaAlvo);
-    if (alterada) {
-      setSelecionado({
-        ...alterada,
-        youtubeId: yId,
-        tituloCanal: tituloCadastrar.trim() || `Aula: ${disciplinaAlvo}`,
-        duracao: duracaoCadastrar.trim() || "YouTube",
-        temVideoCanal: true,
-      });
+      setCustomizacoes(novasCustom);
+      setSucessoCadastrar(
+        isConfiguredSupabase
+          ? "Videoaula salva na plataforma para todos os alunos."
+          : "Vídeo salvo somente neste navegador; não está sincronizado com outros dispositivos.",
+      );
+
+      const alterada = listaAulas.find((a) => a.disciplinaId === disciplinaAlvo);
+      if (alterada) {
+        setSelecionadoId(alterada.id);
+      }
+
+      setTimeout(() => {
+        setSucessoCadastrar("");
+        setModalCadastrarAberto(false);
+      }, 1800);
+    } catch (erro: unknown) {
+      setErroCadastrar(`Não foi possível salvar a videoaula: ${mensagemErroPersistencia(erro)}`);
+    } finally {
+      setSalvandoVideo(false);
     }
-
-    setTimeout(() => {
-      setSucessoCadastrar("");
-      setModalCadastrarAberto(false);
-    }, 1200);
   };
 
-  const handleRestaurarPadrao = () => {
+  const handleRestaurarPadrao = async () => {
     if (window.confirm("Deseja restaurar as videoaulas para o padrão original da plataforma?")) {
-      setCustomizacoes({});
-      salvarCustomizacoes({});
-      setSelecionado(VIDEOAULAS_OFICIAIS[0]);
+      setErroPersistencia("");
+      try {
+        if (isConfiguredSupabase) {
+          await restaurarVideoaulasPersonalizadas();
+        }
+        localStorage.removeItem(STORAGE_KEY_CUSTOM_VIDEOS);
+        setCustomizacoes({});
+        setSelecionadoId(VIDEOAULAS_OFICIAIS[0].id);
+      } catch (erro: unknown) {
+        setErroPersistencia(`Não foi possível restaurar os vídeos: ${mensagemErroPersistencia(erro)}`);
+      }
     }
   };
 
@@ -442,7 +531,7 @@ export default function Videos() {
   }, [selecionado]);
 
   const selecionar = (aula: typeof VIDEOAULAS_OFICIAIS[0]) => {
-    setSelecionado(aula);
+    setSelecionadoId(aula.id);
     if (aula?.disciplinaId) {
       marcarProgresso(aula.disciplinaId, "video", true);
     }
@@ -500,15 +589,17 @@ export default function Videos() {
             <YoutubeIcon size={18} />
             <span>Canal Luiz Eduardo</span>
           </a>
-          <button
-            type="button"
-            className="btn btn-com-icone btn-vincular-video-topo"
-            onClick={() => abrirModalCadastrar(selecionado?.disciplinaId)}
-            title="Adicionar ou vincular vídeo do YouTube para qualquer disciplina"
-          >
-            <PlusCircle size={18} />
-            <span>Adicionar Vídeo</span>
-          </button>
+          {podeEditarVideos && (
+            <button
+              type="button"
+              className="btn btn-com-icone btn-vincular-video-topo"
+              onClick={() => abrirModalCadastrar(selecionado?.disciplinaId)}
+              title="Adicionar ou vincular vídeo do YouTube para qualquer disciplina"
+            >
+              <PlusCircle size={18} />
+              <span>Adicionar Vídeo</span>
+            </button>
+          )}
           <button
             type="button"
             className="btn btn-com-icone btn-baixar-video-topo"
@@ -520,6 +611,23 @@ export default function Videos() {
           </button>
         </div>
       </div>
+
+      {(erroPersistencia || !isConfiguredSupabase) && (
+        <div
+          role="status"
+          style={{
+            margin: "0 0 16px",
+            padding: "10px 14px",
+            borderRadius: 8,
+            background: erroPersistencia ? "#fee2e2" : "#fef3c7",
+            color: erroPersistencia ? "#991b1b" : "#92400e",
+            fontSize: "0.88rem",
+          }}
+        >
+          {erroPersistencia ||
+            "O Supabase não está configurado: alterações de vídeo ficam salvas apenas neste navegador."}
+        </div>
+      )}
 
       {/* 1. PLAYER DE VÍDEO EM DESTAQUE NO TOPO (igual Playbooks e Audiobooks) */}
       <div className="player-topo-secao" ref={leitorRef}>
@@ -608,14 +716,16 @@ export default function Videos() {
                   <p>{selecionado.descricao}</p>
                 </div>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-                  <button
-                    type="button"
-                    className="btn btn-contorno btn-com-icone"
-                    onClick={() => abrirModalCadastrar(selecionado.disciplinaId)}
-                    title="Adicionar ou alterar o link do YouTube desta disciplina"
-                  >
-                    <Edit3 size={15} /> Vincular Vídeo
-                  </button>
+                  {podeEditarVideos && (
+                    <button
+                      type="button"
+                      className="btn btn-contorno btn-com-icone"
+                      onClick={() => abrirModalCadastrar(selecionado.disciplinaId)}
+                      title="Adicionar ou alterar o link do YouTube desta disciplina"
+                    >
+                      <Edit3 size={15} /> Vincular Vídeo
+                    </button>
+                  )}
                   <button
                     type="button"
                     className="btn btn-contorno btn-com-icone"
@@ -802,17 +912,19 @@ export default function Videos() {
                     )}
                   </button>
 
-                  <button
-                    type="button"
-                    className="btn-icone-editar-lista"
-                    title={`Vincular / Trocar vídeo de ${aula.titulo}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      abrirModalCadastrar(aula.disciplinaId);
-                    }}
-                  >
-                    <Edit3 size={15} />
-                  </button>
+                  {podeEditarVideos && (
+                    <button
+                      type="button"
+                      className="btn-icone-editar-lista"
+                      title={`Vincular / Trocar vídeo de ${aula.titulo}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        abrirModalCadastrar(aula.disciplinaId);
+                      }}
+                    >
+                      <Edit3 size={15} />
+                    </button>
+                  )}
 
                   <button
                     type="button"
@@ -1290,7 +1402,7 @@ export default function Videos() {
 
               {/* Botões de Ação */}
               <div style={{ display: "flex", gap: 10, justifyContent: "space-between", marginTop: 8, flexWrap: "wrap" }}>
-                {contagemPersonalizados > 0 && (
+                {podeEditarVideos && contagemPersonalizados > 0 && (
                   <button
                     type="button"
                     onClick={handleRestaurarPadrao}
@@ -1313,8 +1425,9 @@ export default function Videos() {
                     type="submit"
                     className="btn btn-primario"
                     style={{ background: "#dc2626", borderColor: "#dc2626" }}
+                    disabled={salvandoVideo || carregandoVideos}
                   >
-                    <CheckCircle2 size={16} /> Salvar e Vincular
+                    <CheckCircle2 size={16} /> {salvandoVideo ? "Salvando..." : carregandoVideos ? "Carregando..." : "Salvar e Vincular"}
                   </button>
                 </div>
               </div>

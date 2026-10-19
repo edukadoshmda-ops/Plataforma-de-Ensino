@@ -37,6 +37,82 @@ export const supabase = isSupabaseConfigured()
     }))
   : null;
 
+export interface VideoaulaPersonalizada {
+  youtubeId: string;
+  tituloCanal?: string;
+  duracao?: string;
+}
+
+export async function obterVideoaulasPersonalizadas(): Promise<Record<string, VideoaulaPersonalizada>> {
+  if (!supabase) {
+    throw new Error("Supabase não está configurado.");
+  }
+
+  const { data, error } = await supabase
+    .from("videoaulas_personalizadas")
+    .select("disciplina_id, youtube_id, titulo_canal, duracao");
+
+  if (error) {
+    throw error;
+  }
+
+  return Object.fromEntries(
+    data.map(
+      (video: {
+        disciplina_id: string;
+        youtube_id: string;
+        titulo_canal: string | null;
+        duracao: string | null;
+      }) => [
+        video.disciplina_id,
+        {
+          youtubeId: video.youtube_id,
+          tituloCanal: video.titulo_canal || undefined,
+          duracao: video.duracao || undefined,
+        },
+      ],
+    ),
+  );
+}
+
+export async function salvarVideoaulaPersonalizada(
+  disciplinaId: string,
+  video: VideoaulaPersonalizada,
+): Promise<void> {
+  if (!supabase) {
+    throw new Error("Supabase não está configurado.");
+  }
+
+  const { error } = await supabase.from("videoaulas_personalizadas").upsert(
+    {
+      disciplina_id: disciplinaId,
+      youtube_id: video.youtubeId,
+      titulo_canal: video.tituloCanal || null,
+      duracao: video.duracao || null,
+    },
+    { onConflict: "disciplina_id" },
+  );
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function restaurarVideoaulasPersonalizadas(): Promise<void> {
+  if (!supabase) {
+    throw new Error("Supabase não está configurado.");
+  }
+
+  const { error } = await supabase
+    .from("videoaulas_personalizadas")
+    .delete()
+    .not("disciplina_id", "is", null);
+
+  if (error) {
+    throw error;
+  }
+}
+
 // ==============================================================================
 // 1. AUTENTICAÇÃO SUPABASE (AUTH)
 // ==============================================================================

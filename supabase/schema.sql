@@ -109,6 +109,15 @@ CREATE TABLE IF NOT EXISTS public.tutor_conversas (
   criado_em TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
+-- 9. Videoaulas personalizadas compartilhadas por toda a plataforma
+CREATE TABLE IF NOT EXISTS public.videoaulas_personalizadas (
+  disciplina_id TEXT PRIMARY KEY,
+  youtube_id TEXT NOT NULL CHECK (youtube_id ~ '^[A-Za-z0-9_-]{11}$'),
+  titulo_canal TEXT,
+  duracao TEXT,
+  atualizado_em TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
 -- ==============================================================================
 -- ÍNDICES B-TREE DE ALTA PERFORMANCE (ESCALA PARA 5.000+ ALUNOS)
 -- ==============================================================================
@@ -132,6 +141,15 @@ CREATE INDEX IF NOT EXISTS idx_certificados_user ON public.certificados (user_id
 
 CREATE INDEX IF NOT EXISTS idx_tutor_user_data ON public.tutor_conversas (user_id, criado_em DESC);
 
+-- Videoaulas: leitura pública; somente equipe autorizada altera os links.
+ALTER TABLE public.videoaulas_personalizadas ENABLE ROW LEVEL SECURITY;
+GRANT SELECT ON public.videoaulas_personalizadas TO anon, authenticated;
+GRANT INSERT, UPDATE, DELETE ON public.videoaulas_personalizadas TO authenticated;
+
+DROP POLICY IF EXISTS "Videoaulas visíveis a todos" ON public.videoaulas_personalizadas;
+CREATE POLICY "Videoaulas visíveis a todos" ON public.videoaulas_personalizadas
+  FOR SELECT USING (true);
+
 -- ==============================================================================
 -- POLÍTICAS RLS (ROW LEVEL SECURITY)
 -- ==============================================================================
@@ -153,6 +171,19 @@ BEGIN
   );
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+DROP POLICY IF EXISTS "Equipe pode inserir videoaulas" ON public.videoaulas_personalizadas;
+CREATE POLICY "Equipe pode inserir videoaulas" ON public.videoaulas_personalizadas
+  FOR INSERT WITH CHECK (public.is_admin_ou_professor());
+
+DROP POLICY IF EXISTS "Equipe pode atualizar videoaulas" ON public.videoaulas_personalizadas;
+CREATE POLICY "Equipe pode atualizar videoaulas" ON public.videoaulas_personalizadas
+  FOR UPDATE USING (public.is_admin_ou_professor())
+  WITH CHECK (public.is_admin_ou_professor());
+
+DROP POLICY IF EXISTS "Equipe pode excluir videoaulas" ON public.videoaulas_personalizadas;
+CREATE POLICY "Equipe pode excluir videoaulas" ON public.videoaulas_personalizadas
+  FOR DELETE USING (public.is_admin_ou_professor());
 
 -- Profiles: Aluno lê e atualiza seu próprio perfil; Admin lê todos
 DROP POLICY IF EXISTS "Aluno pode ver próprio perfil" ON public.profiles;

@@ -33,6 +33,10 @@ npm run build
 node tests/appVerification.mjs
 ```
 
+### Persistência das videoaulas
+
+Os links personalizados das videoaulas são compartilhados pela plataforma usando o Supabase. Em projetos já configurados, execute o SQL de [supabase/migrations/20261019000000_persist_videoaulas.sql](./supabase/migrations/20261019000000_persist_videoaulas.sql) no SQL Editor do Supabase. Instalações novas também podem usar o schema completo em `supabase/schema.sql`. Sem Supabase configurado, o app avisa que as alterações ficam somente no navegador atual.
+
 ## 📄 Amparo Legal
 
 Curso Livre de Teologia amparado pelo **Decreto Presidencial nº 5.154 de 23 de julho de 2004** e Resolução CNE nº 04/99.
