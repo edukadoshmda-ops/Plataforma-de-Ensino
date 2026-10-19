@@ -80,6 +80,9 @@ function mensagemErroPersistencia(erro: unknown): string {
           .join(" ");
   const codigo = typeof registro.code === "string" ? registro.code : "";
   const diagnostico = `${detalhe} ${codigo}`.trim() || String(erro);
+  if (codigo === "42501" || /row-level security policy/i.test(diagnostico)) {
+    return "O Supabase está bloqueando sua conta pela política RLS. Aplique a migração supabase/migrations/20261019130000_fix_videoaulas_superadmin_rls.sql no SQL Editor do Supabase e recarregue esta página.";
+  }
   if (diagnostico.includes("videoaulas_personalizadas") && /does not exist|schema cache|not found/i.test(diagnostico)) {
     return "A tabela de videoaulas ainda não existe no Supabase. Aplique o SQL supabase/migrations/20261019000000_persist_videoaulas.sql no painel do Supabase.";
   }

@@ -168,7 +168,7 @@ BEGIN
   RETURN EXISTS (
     SELECT 1 FROM public.profiles
     WHERE id = auth.uid() AND role IN ('superadmin', 'admin', 'professor', 'tutor')
-  );
+  ) OR lower(coalesce(auth.jwt() ->> 'email', '')) = 'edukadoshmda@gmail.com';
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 

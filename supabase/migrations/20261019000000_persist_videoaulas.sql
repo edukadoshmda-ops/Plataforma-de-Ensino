@@ -18,7 +18,7 @@ AS $$
     FROM public.profiles
     WHERE id::text = auth.uid()::text
       AND role IN ('superadmin', 'admin', 'professor', 'tutor')
-  );
+  ) OR lower(coalesce(auth.jwt() ->> 'email', '')) = 'edukadoshmda@gmail.com';
 $$;
 
 ALTER TABLE public.videoaulas_personalizadas ENABLE ROW LEVEL SECURITY;
