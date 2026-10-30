@@ -201,7 +201,7 @@ export default function AdminSaaS() {
     const total = alunos.length;
     const pagos = alunos.filter((a) => a.status_pagamento === "pago").length;
     const pendentes = total - pagos;
-    const receitaConfirmada = pagos * 179.88;
+    const receitaConfirmada = pagos * 118.8;
     return { total, pagos, pendentes, receitaConfirmada };
   }, [alunos]);
 
@@ -399,7 +399,7 @@ export default function AdminSaaS() {
           <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#0f2a43", marginTop: 6 }}>
             R$ {estatisticas.receitaConfirmada.toFixed(2).replace(".", ",")}
           </div>
-          <small style={{ color: "#64748b" }}>Baseado no plano integral (12x R$ 14,99)</small>
+          <small style={{ color: "#64748b" }}>Baseado no plano integral (12x R$ 9,90)</small>
         </div>
       </div>
 

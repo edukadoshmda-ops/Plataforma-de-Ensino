@@ -98,6 +98,42 @@ export async function salvarVideoaulaPersonalizada(
   }
 }
 
+export async function obterRevisoesNotebookLM(): Promise<Record<string, string>> {
+  if (!supabase) {
+    throw new Error("Supabase não está configurado.");
+  }
+  const { data, error } = await supabase
+    .from("revisoes_notebooklm")
+    .select("disciplina_id, link");
+  if (error) {
+    throw error;
+  }
+  return Object.fromEntries(
+    data.map((r: { disciplina_id: string; link: string }) => [r.disciplina_id, r.link]),
+  );
+}
+
+export async function salvarRevisaoNotebookLM(disciplinaId: string, link: string): Promise<void> {
+  if (!supabase) {
+    throw new Error("Supabase não está configurado.");
+  }
+  const linkLimpo = link.trim();
+  const { data: sessaoAtual } = await supabase.auth.getSession();
+  if (!sessaoAtual.session) {
+    throw new Error(
+      "você está logado em modo local (sem sessão no Supabase). Saia e entre novamente com o e-mail e a senha da sua conta Supabase.",
+    );
+  }
+  const { error } = linkLimpo
+    ? await supabase
+        .from("revisoes_notebooklm")
+        .upsert({ disciplina_id: disciplinaId, link: linkLimpo }, { onConflict: "disciplina_id" })
+    : await supabase.from("revisoes_notebooklm").delete().eq("disciplina_id", disciplinaId);
+  if (error) {
+    throw error;
+  }
+}
+
 export async function restaurarVideoaulasPersonalizadas(): Promise<void> {
   if (!supabase) {
     throw new Error("Supabase não está configurado.");

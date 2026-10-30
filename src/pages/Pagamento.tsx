@@ -44,8 +44,8 @@ const PLANOS: Record<TipoPlano, PlanoConfig> = {
     subtitulo: "Acesso VITALÍCIO total online + Certificado, Histórico e Credencial Digital em PDF de Alta Resolução",
     badge: "♾️ Acesso Vitalício",
     valorOriginal: 497.0,
-    valorTotal: 179.88,
-    valorParcela: 14.99,
+    valorTotal: 118.8,
+    valorParcela: 9.9,
     parcelas: 12,
     checkoutUrl:
       import.meta.env.VITE_ASAAS_CHECKOUT_URL || "https://www.asaas.com/c/g59srloma9xotu29",
@@ -66,8 +66,8 @@ const PLANOS: Record<TipoPlano, PlanoConfig> = {
     subtitulo: "Acesso VITALÍCIO + Credencial em PVC Rígido e Diploma em Papel Especial com Selo Dourado",
     badge: "👑 Vitalício + Kit Físico",
     valorOriginal: 890.0,
-    valorTotal: 297.0,
-    valorParcela: 29.7,
+    valorTotal: 238.8,
+    valorParcela: 19.9,
     parcelas: 12,
     checkoutUrl:
       import.meta.env.VITE_ASAAS_CHECKOUT_URL_FISICO ||
@@ -278,9 +278,9 @@ export default function Pagamento() {
             </p>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
               <span style={{ fontSize: "0.88rem", textDecoration: "line-through", color: "#94a3b8" }}>De R$ 497,00</span>
-              <strong style={{ fontSize: "1.45rem", color: "#0f2a43" }}>12x R$ 14,99</strong>
+              <strong style={{ fontSize: "1.45rem", color: "#0f2a43" }}>12x R$ 9,90</strong>
               <small style={{ color: "#166534", fontWeight: 700, fontSize: "0.85rem" }}>
-                (ou R$ 179,88 à vista)
+                (ou R$ 118,80 à vista)
               </small>
             </div>
           </div>
@@ -304,9 +304,9 @@ export default function Pagamento() {
             </p>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
               <span style={{ fontSize: "0.88rem", textDecoration: "line-through", color: "#94a3b8" }}>De R$ 890,00</span>
-              <strong style={{ fontSize: "1.45rem", color: "#0f2a43" }}>12x R$ 29,70</strong>
+              <strong style={{ fontSize: "1.45rem", color: "#0f2a43" }}>12x R$ 19,90</strong>
               <small style={{ color: "#166534", fontWeight: 700, fontSize: "0.85rem" }}>
-                (ou R$ 297,00 à vista)
+                (ou R$ 238,80 à vista)
               </small>
             </div>
           </div>

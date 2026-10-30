@@ -17,6 +17,7 @@ import {
   BookMarked,
   ShieldCheck,
   Download,
+  RefreshCcw,
 } from "lucide-react";
 import TutorWidget from "./TutorWidget";
 import ModalInstalarApp from "./ModalInstalarApp";
@@ -28,6 +29,7 @@ const links = [
   { to: "/audiobooks", label: "Audiobooks", icone: Headphones },
   { to: "/artigos", label: "Artigos", icone: ScrollText },
   { to: "/videos", label: "Vídeos", icone: Video },
+  { to: "/revisao", label: "Revisão", icone: RefreshCcw },
   { to: "/dicionario", label: "Dicionário & Bíblia", icone: BookMarked },
   { to: "/testes", label: "Testes", icone: GraduationCap },
   { to: "/verificar", label: "Validar Diploma", icone: ShieldCheck },

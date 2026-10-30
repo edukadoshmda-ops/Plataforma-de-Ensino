@@ -87,8 +87,8 @@ export default function Matricula() {
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
                 <span style={{ fontSize: "0.82rem", textDecoration: "line-through", color: "#94a3b8" }}>De R$ 497</span>
-                <strong style={{ fontSize: "1.25rem", color: "#0f2a43" }}>12x R$ 14,99</strong>
-                <small style={{ color: "#64748b", fontSize: "0.82rem" }}>(ou R$ 179,88 à vista)</small>
+                <strong style={{ fontSize: "1.25rem", color: "#0f2a43" }}>12x R$ 9,90</strong>
+                <small style={{ color: "#64748b", fontSize: "0.82rem" }}>(ou R$ 118,80 à vista)</small>
               </div>
             </div>
 
@@ -111,8 +111,8 @@ export default function Matricula() {
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
                 <span style={{ fontSize: "0.82rem", textDecoration: "line-through", color: "#94a3b8" }}>De R$ 890</span>
-                <strong style={{ fontSize: "1.25rem", color: "#0f2a43" }}>12x R$ 29,70</strong>
-                <small style={{ color: "#64748b", fontSize: "0.82rem" }}>(ou R$ 297,00 à vista)</small>
+                <strong style={{ fontSize: "1.25rem", color: "#0f2a43" }}>12x R$ 19,90</strong>
+                <small style={{ color: "#64748b", fontSize: "0.82rem" }}>(ou R$ 238,80 à vista)</small>
               </div>
             </div>
           </div>

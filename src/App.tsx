@@ -16,6 +16,7 @@ import TutorEspecialista from "./pages/TutorEspecialista";
 import DicionarioBiblia from "./pages/DicionarioBiblia";
 import VerificarCertificado from "./pages/VerificarCertificado";
 import AdminSaaS from "./pages/AdminSaaS";
+import Revisao from "./pages/Revisao";
 
 interface ProtegidoProps {
   children: React.ReactNode;
@@ -76,6 +77,7 @@ export default function App() {
             <Route path="/audiobooks" element={<RequerPagamento><Audiobooks /></RequerPagamento>} />
             <Route path="/artigos" element={<RequerPagamento><Artigos /></RequerPagamento>} />
             <Route path="/videos" element={<RequerPagamento><Videos /></RequerPagamento>} />
+            <Route path="/revisao" element={<RequerPagamento><Revisao /></RequerPagamento>} />
             <Route path="/dicionario" element={<RequerPagamento><DicionarioBiblia /></RequerPagamento>} />
             <Route path="/testes" element={<RequerPagamento><Testes /></RequerPagamento>} />
             <Route path="/verificar" element={<VerificarCertificado />} />

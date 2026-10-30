@@ -162,9 +162,9 @@ export default function Apresentacao() {
               <span className="plano-preco-de">De R$ 497,00 por apenas</span>
               <div className="plano-parcelamento">
                 <small>12x de</small>
-                <strong>R$ 14,99</strong>
+                <strong>R$ 9,90</strong>
               </div>
-              <p className="plano-a-vista">ou R$ 179,88 à vista via PIX / Boleto</p>
+              <p className="plano-a-vista">ou R$ 118,80 à vista via PIX / Boleto</p>
               <div className="plano-vitalicio-badge">
                 <Infinity size={14} /> Pagamento Único • Acesso Vitalício
               </div>
@@ -240,9 +240,9 @@ export default function Apresentacao() {
               <span className="plano-preco-de">De R$ 890,00 por apenas</span>
               <div className="plano-parcelamento">
                 <small>12x de</small>
-                <strong>R$ 29,70</strong>
+                <strong>R$ 19,90</strong>
               </div>
-              <p className="plano-a-vista">ou R$ 297,00 à vista via PIX / Cartão</p>
+              <p className="plano-a-vista">ou R$ 238,80 à vista via PIX / Cartão</p>
               <div className="plano-vitalicio-badge">
                 <Infinity size={14} /> Pagamento Único • Acesso Vitalício
               </div>
