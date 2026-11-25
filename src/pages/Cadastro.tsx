@@ -29,9 +29,24 @@ export default function Cadastro() {
     try {
       await cadastrar(nome.trim(), email.trim(), senha);
       await login(email.trim(), senha);
-      navigate(`/pagamento${location.search || ""}`);
-    } catch (err) {
-      setErro(err.message || "Erro ao realizar cadastro.");
+      const plano = new URLSearchParams(location.search).get("plano") === "digital" ? "digital" : "fisico";
+      navigate(`/pagamento${location.search || ""}`, {
+        state: {
+          nomeCompleto: nome.trim(),
+          email: email.trim(),
+          plano,
+        },
+      });
+    } catch (err: any) {
+      const msg = String(err?.message || "");
+      const msgLower = msg.toLowerCase();
+      if (msgLower.includes("already registered") || msgLower.includes("already been registered")) {
+        setErro('Este e-mail já está cadastrado. Clique em "Acessar com sua conta" abaixo para entrar.');
+      } else if (msgLower.includes("rate limit")) {
+        setErro("Muitas tentativas de envio de e-mail em sequência. Aguarde alguns minutos ou tente outro e-mail.");
+      } else {
+        setErro(msg || "Erro ao realizar cadastro.");
+      }
     } finally {
       setCarregando(false);
     }

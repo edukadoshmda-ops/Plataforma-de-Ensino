@@ -191,9 +191,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUsuario(sessao);
     sessionStorage.setItem("ta_usuario", JSON.stringify(sessao));
     localStorage.setItem("ta_usuario_persistido", JSON.stringify(sessao));
-    if (sessao.role === "superadmin") {
-      sincronizarMatricula(null, sessao);
-    }
+    sincronizarMatricula(null, sessao);
     return true;
   };
 
@@ -222,8 +220,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     await logoutUsuarioSupabase();
     setUsuario(null);
+    setMatriculaState(null);
+    setPagamentoConfirmadoState(false);
     sessionStorage.removeItem("ta_usuario");
     localStorage.removeItem("ta_usuario_persistido");
+    localStorage.removeItem("ta_matricula");
+    localStorage.removeItem("ta_pagamento_confirmado");
   };
 
   const setMatricula = async (dados: Matricula, salvarNoBanco = true) => {

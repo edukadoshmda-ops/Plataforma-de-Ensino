@@ -121,7 +121,7 @@ export default function Pagamento() {
     }
   }, [pagamentoConfirmado, matricula?.status_pagamento, navigate]);
 
-  if (!dados) {
+  if (!dados && !usuario) {
     return (
       <div className="card" style={{ textAlign: "center", padding: 32 }}>
         <p>Faça sua matrícula antes do pagamento.</p>
