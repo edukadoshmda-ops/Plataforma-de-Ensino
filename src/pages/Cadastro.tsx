@@ -29,7 +29,7 @@ export default function Cadastro() {
     try {
       await cadastrar(nome.trim(), email.trim(), senha);
       await login(email.trim(), senha);
-      navigate(`/matricula${location.search || ""}`);
+      navigate(`/pagamento${location.search || ""}`);
     } catch (err) {
       setErro(err.message || "Erro ao realizar cadastro.");
     } finally {
