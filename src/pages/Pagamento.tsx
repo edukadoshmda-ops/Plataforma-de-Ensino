@@ -404,7 +404,7 @@ export default function Pagamento() {
                   Informe o local onde deseja receber a sua Credencial em PVC e o Diploma com Selo Dourado.
                 </p>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 10, marginBottom: 10 }}>
+                <div className="pagamento-endereco-grid-cep-rua">
                   <div className="form-grupo-campo" style={{ margin: 0 }}>
                     <label style={{ fontSize: "0.8rem" }}>CEP *</label>
                     <input
@@ -427,7 +427,7 @@ export default function Pagamento() {
                   </div>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 10 }}>
+                <div className="pagamento-endereco-grid-num-comp-bairro">
                   <div className="form-grupo-campo" style={{ margin: 0 }}>
                     <label style={{ fontSize: "0.8rem" }}>Número *</label>
                     <input
@@ -457,7 +457,7 @@ export default function Pagamento() {
                   </div>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "3fr 1fr", gap: 10 }}>
+                <div className="pagamento-endereco-grid-cidade-uf">
                   <div className="form-grupo-campo" style={{ margin: 0 }}>
                     <label style={{ fontSize: "0.8rem" }}>Cidade *</label>
                     <input

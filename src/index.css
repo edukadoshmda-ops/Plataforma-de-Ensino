@@ -1149,6 +1149,61 @@ html {
   border-radius: 12px;
   padding: 18px;
   margin-top: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+.pagamento-endereco-box .form-grupo-campo {
+  min-width: 0;
+}
+
+.pagamento-endereco-box input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.pagamento-endereco-grid-cep-rua {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pagamento-endereco-grid-num-comp-bairro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pagamento-endereco-grid-cidade-uf {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .pagamento-endereco-box {
+    padding: 14px;
+  }
+
+  .pagamento-endereco-grid-cep-rua {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pagamento-endereco-grid-num-comp-bairro {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .pagamento-endereco-grid-num-comp-bairro > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .pagamento-endereco-grid-cidade-uf {
+    grid-template-columns: minmax(0, 2.5fr) minmax(0, 1fr);
+  }
 }
 
 
